@@ -28,7 +28,10 @@ hs_err_pid*
 
 ### Maven ###
 target/
+<<<<<<< HEAD
 pom.xml
+=======
+>>>>>>> 6eb7306e355eeb99d97be115a426210558e96856
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -48,4 +51,7 @@ buildNumber.properties
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/java,maven
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6eb7306e355eeb99d97be115a426210558e96856
