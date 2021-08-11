@@ -55,3 +55,4 @@ buildNumber.properties
 =======
 # End of https://www.toptal.com/developers/gitignore/api/java,maven
 >>>>>>> f21e86ebeab62dca5a1cb5d9c3ebc722f9508619
+/bin/

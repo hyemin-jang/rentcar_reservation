@@ -5,7 +5,7 @@ DROP TABLE customer cascade constraint;
 DROP TABLE car cascade constraint;
 
 -- 예약 정보
-DROP TABLE reservation cascade constraint;
+DROP TABLE rent cascade constraint;
 
 CREATE TABLE customer (
        customer_id          NUMBER	 PRIMARY KEY,
@@ -19,18 +19,19 @@ CREATE TABLE car (
        model                VARCHAR2(20) NOT NULL,
        brand          		VARCHAR2(20) NOT NULL,
        cartype   			VARCHAR2(20) NOT NULL,
-       price 				NUMBER NOT NULL
+       price 				NUMBER NOT NULL,
+       is_rent				CHAR(1) NOT NULL
 );
 
 
-CREATE TABLE reservation (
+CREATE TABLE rent (
        reservation_id       NUMBER PRIMARY KEY,
        startday     		DATE NOT NULL,
        endday  				DATE NOT NULL,
        customer_id			NUMBER NOT NULL,
        car_id				NUMBER NOT NULL,
-       amount				NUMBER
+       returnday			DATE
 );
 
-ALTER TABLE reservation ADD FOREIGN KEY (customer_id) REFERENCES customer (customer_id);
-ALTER TABLE reservation ADD FOREIGN KEY (car_id) REFERENCES car (car_id);
+ALTER TABLE rent ADD FOREIGN KEY (customer_id) REFERENCES customer (customer_id);
+ALTER TABLE rent ADD FOREIGN KEY (car_id) REFERENCES car (car_id);
