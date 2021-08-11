@@ -9,7 +9,7 @@ public class CustomerDTO {
 	private String phone;
 	// 고객 면허 정보
 	private String license;
-	
+		
 	public CustomerDTO() {}
 	public CustomerDTO(int customerId, String name, String phone, String license) {
 		super();

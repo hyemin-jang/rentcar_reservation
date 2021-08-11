@@ -1,8 +1,8 @@
 package rent.model.dto;
 
-public class ReservationDTO {
+public class RentDTO {
 	// 예약번호
-	private int reservationId;
+	private int rentId;
 	// 차량 예약 시작일
 	private String startDay;
 	// 차량 예약 종료일
@@ -11,25 +11,25 @@ public class ReservationDTO {
 	private int customerId;
 	// 예약 차량 번호
 	private int carId;
-	// 예약 총금액 ( (종료일-시작일)*차량 1박당 금액 )
-	private int amount;
+	// 실 반납일
+	private String returnDay;
 	
-	public ReservationDTO() {}
-	public ReservationDTO(int reservationId, String startDay, String endDay, int customerId, int carId, int amount) {
+	public RentDTO() {}
+	public RentDTO(int rentId, String startDay, String endDay, int customerId, int carId, String returnDay) {
 		super();
-		this.reservationId = reservationId;
+		this.rentId = rentId;
 		this.startDay = startDay;
 		this.endDay = endDay;
 		this.customerId = customerId;
 		this.carId = carId;
-		this.amount = amount;
+		this.returnDay = returnDay;
 	}
 	
-	public int getReservationId() {
-		return reservationId;
+	public int getRentId() {
+		return rentId;
 	}
-	public void setReservationId(int reservationId) {
-		this.reservationId = reservationId;
+	public void setRentId(int rentId) {
+		this.rentId = rentId;
 	}
 	public String getStartDay() {
 		return startDay;
@@ -55,17 +55,17 @@ public class ReservationDTO {
 	public void setCarId(int carId) {
 		this.carId = carId;
 	}
-	public int getAmount() {
-		return amount;
+	public String getReturnDay() {
+		return returnDay;
 	}
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setReturnDay(String returnDay) {
+		this.returnDay = returnDay;
 	}
 	
 	@Override
 	public String toString() {
-		return "ReservationDTO [reservationId=" + reservationId + ", startDay=" + startDay + ", endDay=" + endDay
-				+ ", customerId=" + customerId + ", carId=" + carId + ", amount=" + amount + "]";
-	}
+		return "RentDTO [rentId=" + rentId + ", startDay=" + startDay + ", endDay=" + endDay + ", customerId="
+				+ customerId + ", carId=" + carId + ", returnDay=" + returnDay + "]";
+	}	
 	
 }
