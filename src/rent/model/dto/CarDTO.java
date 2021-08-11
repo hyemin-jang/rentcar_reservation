@@ -12,10 +12,10 @@ public class CarDTO {
 	// 1박당 대여 가격
 	private int price;
 	// 대여 여부 (0,1)
-	private char isRent;
+	private String isRent;
 	
 	public CarDTO() {}
-	public CarDTO(int carId, String model, String brand, String carType, int price, char isRent) {
+	public CarDTO(int carId, String model, String brand, String carType, int price, String isRent) {
 		super();
 		this.carId = carId;
 		this.model = model;
@@ -55,10 +55,10 @@ public class CarDTO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public char getIsRent() {
+	public String getIsRent() {
 		return isRent;
 	}
-	public void setIsRent(char isRent) {
+	public void setIsRent(String isRent) {
 		this.isRent = isRent;
 	}
 	
