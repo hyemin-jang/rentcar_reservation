@@ -33,7 +33,8 @@ public class RunningEndView {
 		}
 
 	}
-
+	
+	// 대여리스트 출력
 	public static void getRentList(ArrayList<RentDTO> list) {
 		if (list != null) {
 			int length = list.size();
