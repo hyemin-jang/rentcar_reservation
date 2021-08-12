@@ -1,7 +1,6 @@
 package rent.controller;
 
 import java.sql.SQLException;
-
 import rent.model.RentDAO;
 import rent.model.dto.RentDTO;
 import rent.view.RunningEndView;
@@ -19,6 +18,7 @@ public class RentController {
 			RunningEndView.showError("차량 예약 실패하였습니다.");
 		}
 		return result;
+
 	}
 
 }
