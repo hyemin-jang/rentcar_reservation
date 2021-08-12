@@ -1,11 +1,15 @@
--- 고객 정보
+-- �� ����
 DROP TABLE customer cascade constraint;
 
--- 자동차 정보
+-- �ڵ��� ����
 DROP TABLE car cascade constraint;
 
--- 예약 정보
+-- ���� ����
 DROP TABLE rent cascade constraint;
+
+DROP SEQUENCE customer_idx;
+DROP SEQUENCE car_idx;
+DROP SEQUENCE rent_idx;
 
 CREATE TABLE customer (
        customer_id          NUMBER	 PRIMARY KEY,
@@ -20,7 +24,7 @@ CREATE TABLE car (
        brand          		VARCHAR2(20) NOT NULL,
        cartype   			VARCHAR2(20) NOT NULL,
        price 				NUMBER NOT NULL,
-       is_rent				VARCHAR2(1) NOT NULL
+       is_rent				VARCHAR2(1) DEFAULT 0
 );
 
 
@@ -35,3 +39,8 @@ CREATE TABLE rent (
 
 ALTER TABLE rent ADD FOREIGN KEY (customer_id) REFERENCES customer (customer_id);
 ALTER TABLE rent ADD FOREIGN KEY (car_id) REFERENCES car (car_id);
+ALTER TABEL
+
+CREATE SEQUENCE customer_idx START WITH 1 INCREMENT BY 1 MAXVALUE 10000000 CYCLE NOCACHE;
+CREATE SEQUENCE car_idx START WITH 1 INCREMENT BY 1 MAXVALUE 10000000 CYCLE NOCACHE;
+CREATE SEQUENCE rent_idx START WITH 1 INCREMENT BY 1 MAXVALUE 10000000 CYCLE NOCACHE;
