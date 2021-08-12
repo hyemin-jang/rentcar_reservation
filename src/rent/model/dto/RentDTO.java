@@ -15,13 +15,12 @@ public class RentDTO {
 	private String returnDay;
 	
 	public RentDTO() {}
-	public RentDTO(String startDay, String endDay, int customerId, int carId, String returnDay) {
+	public RentDTO(String startDay, String endDay, int customerId, int carId) {
 		super();
 		this.startDay = startDay;
 		this.endDay = endDay;
 		this.customerId = customerId;
 		this.carId = carId;
-		this.returnDay = returnDay;
 	}
 	
 	public RentDTO(int rentId, String startDay, String endDay, int customerId, int carId, String returnDay) {

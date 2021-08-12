@@ -20,7 +20,7 @@ public class RentDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from rent order by reservation_id");
+			pstmt = con.prepareStatement("select * from rent order by rent_id");
 			rset = pstmt.executeQuery();
 
 			rentList = new ArrayList<RentDTO>();
@@ -42,7 +42,7 @@ public class RentDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("insert into rent values(rent_idx.NEXTVAL, SYSDATE, ?, ?, ?, TO_DATE('2021-08-20'))");
+			pstmt = con.prepareStatement("insert into rent (rent_id, startday, endday, customer_id, car_id)values(rent_idx.NEXTVAL, SYSDATE, ?, ?, ?)");
 			pstmt.setString(1, rent.getEndDay());
 			pstmt.setInt(2, rent.getCustomerId());
 			pstmt.setInt(3, rent.getCarId());
@@ -59,4 +59,25 @@ public class RentDAO {
 		}
 		return false;
 	}
+	
+	public static boolean returnRent(int rentID) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("UPDATE CAR SET IS_RENT = 0 WHERE CAR_ID = (select car_id from rent where rent_id=?)");
+			pstmt.setInt(1, rentID);
+			
+			int result = pstmt.executeUpdate();			
+			
+			if (result == 0) {
+				return true;
+			}
+		} finally {
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
+	
 }

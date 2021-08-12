@@ -16,7 +16,15 @@ public class CarDTO {
 
 	public CarDTO() {
 	}
-
+	
+	public CarDTO(String model, String brand, String carType, int price, String isRent) {
+		super();
+		this.model = model;
+		this.brand = brand;
+		this.carType = carType;
+		this.price = price;
+		this.isRent = isRent;
+	}
 	public CarDTO(int carId, String model, String brand, String carType, int price, String isRent) {
 		super();
 		this.carId = carId;
@@ -84,15 +92,15 @@ public class CarDTO {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("등록번호");
-		builder.append("\t모델");
-		builder.append("\t브랜드");
-		builder.append("\t차종");
-		builder.append("\t1박당 대여료");
-		builder.append("\t대여여부");
-		return builder.toString();
-//		return "CarDTO [carId=" + carId + ", model=" + model + ", brand=" + brand + ", carType=" + carType + ", price=" + price + ", isRent=" + isRent + "]";
+		return "CarDTO [carId=" + carId + ", model=" + model + ", brand=" + brand + ", carType=" + carType + ", price=" + price + ", isRent=" + isRent + "]";
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("프로보노 정보 1. 프로보노 아이디 = ");
+//		builder.append(probonoId);
+//		builder.append("2. 프로보노 이름 : ");
+//		builder.append(probonoName);
+//		builder.append("3. 프로보노 목적 : ");
+//		builder.append(probonoPurpose);
+//		return builder.toString();
 	}
 
 }

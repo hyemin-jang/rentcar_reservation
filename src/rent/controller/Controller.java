@@ -4,9 +4,10 @@ import java.sql.SQLException;
 
 import rent.model.CarDAO;
 import rent.model.dto.CarDTO;
+import rent.model.dto.RentDTO;
 import rent.view.RunningEndView;
 
-public class CarController {
+public class Controller {
 	// 모든 차량 검색
 	public static void getAllCar(){
 		try{
@@ -57,6 +58,28 @@ public class CarController {
 		}
 	}
 	
+	// 차량 대여
+	public static void addRentList(RentDTO rent) {
+		try {
+			RentDAO.addRentList(rent);
+			RunningEndView.showMessage("예약에 성공했습니다.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			RunningEndView.showError("차량 예약 실패하였습니다.");
+		}
+	}
+	
+	// 차량 반납
+	public static void returnRent(int rentID) {
+		try {
+			RentDAO.returnRent(rentID);
+			RunningEndView.showMessage("반납이 완료되었습니다.");
+		} catch (SQLException e){
+			e.printStackTrace();
+			RunningEndView.showError("반납 실패");
+		}
+	}
+	
 	// 관리자 - 차량 등록 로직
 	public static boolean addCar(CarDTO car) {
 		boolean result = false;
@@ -81,10 +104,10 @@ public class CarController {
 			result = CarDAO.deleteCar(car);
 			RunningEndView.showMessage("차량을 삭제했습니다.");
 		} catch (SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			RunningEndView.showError("차량 삭제에 실패하였습니다.");
 		} catch (NullPointerException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			RunningEndView.showError("해당 차량이 존재하지 않습니다.");
 		}
 		return result;   
