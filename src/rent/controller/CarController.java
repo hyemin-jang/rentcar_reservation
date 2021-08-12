@@ -78,7 +78,7 @@ public class CarController {
 		CarDTO car = null;
 		
 		try {
-			car = CarDAO.getCar(id);   // null
+			car = CarDAO.getCar(id);   
 			result = CarDAO.deleteCar(car);
 			RunningEndView.showMessage("차량을 삭제했습니다.");
 		} catch (SQLException e) {
