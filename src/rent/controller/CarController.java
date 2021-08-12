@@ -6,16 +6,18 @@ import rent.model.CarDAO;
 import rent.view.RunningEndView;
 
 public class CarController {
-	//모든 프로젝트 검색 로직
+
+	// 모든 차량 검색
 	public static void getAllCar(){
 		try{
 			RunningEndView.getAllCar(CarDAO.getAllCar());
 		}catch(SQLException s){
 			s.printStackTrace();
-			RunningEndView.showError("모든 프로젝트 검색시 에러 발생");
+			RunningEndView.showError("모든 차량 검색시 에러 발생");
 		}
 	}
 
+	// 모델명으로 검색
 	public static void getCarModelList() {
 		try {
 			RunningEndView.getAllCar(CarDAO.getCarModelList());
@@ -25,6 +27,7 @@ public class CarController {
 		}
 	}
 
+	// 차종으로 검색
 	public static void getCarTypeList() {
 		try {
 			RunningEndView.getAllCar(CarDAO.getCarTypeList());

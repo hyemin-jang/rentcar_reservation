@@ -11,7 +11,7 @@ import rent.model.util.DBUtil;
 
 public class CarDAO {
 
-	// Â¸Ã°ÂµÃ§ Ã‚Ã·Â·Â® ÃÂ¶ÃˆÂ¸ 
+	// ¸ğµç Â÷·® °Ë»ö
 	public static ArrayList<CarDTO> getAllCar() throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -36,6 +36,7 @@ public class CarDAO {
 		return carList;
 	}
 
+	// ¸ğµ¨¸íÀ¸·Î °Ë»ö
 	public static ArrayList<CarDTO> getCarModelList() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -59,7 +60,8 @@ public class CarDAO {
 		}
 		return carList;
 	}
-
+	
+	// Â÷Á¾À¸·Î °Ë»ö
 	public static ArrayList<CarDTO> getCarTypeList() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
