@@ -160,6 +160,27 @@ public class CarDAO {
 		return false;
 	}	
 	
+	// 차량 대여 가능 상태 변경
+	public static boolean updateCarIsRent(int carId, int isRent) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DBUtil.getConnection();
+
+			pstmt = con.prepareStatement("update car set is_rent=? where car_id=?");
+			pstmt.setInt(1, isRent);
+			pstmt.setInt(2, carId);
+
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				return true;
+			}
+		} finally {
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}	
+	
 	// 차량 등록번호로 차량 검색
 	public static CarDTO getCar(int id) throws SQLException{
 		Connection con = null;
