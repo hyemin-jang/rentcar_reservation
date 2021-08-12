@@ -84,7 +84,15 @@ public class CarDTO {
 
 	@Override
 	public String toString() {
-		return "CarDTO [carId=" + carId + ", model=" + model + ", brand=" + brand + ", carType=" + carType + ", price=" + price + ", isRent=" + isRent + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("등록번호");
+		builder.append("\t모델");
+		builder.append("\t브랜드");
+		builder.append("\t차종");
+		builder.append("\t1박당 대여료");
+		builder.append("\t대여여부");
+		return builder.toString();
+//		return "CarDTO [carId=" + carId + ", model=" + model + ", brand=" + brand + ", carType=" + carType + ", price=" + price + ", isRent=" + isRent + "]";
 	}
 
 }
