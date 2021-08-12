@@ -36,5 +36,24 @@ public class CarController {
 			RunningEndView.showError("검색하신 차종이 없습니다.");
 		}
 	}
+
+	public static void getCarBrandList() {
+		try {
+			RunningEndView.getAllCar(CarDAO.getCarBrandList());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			RunningEndView.showError("�˻��Ͻ� �귣�尡 ���ϴ�.");
+		}
+	}
+
+	public static void getCarisRentList() {
+		try {
+			RunningEndView.getAllCar(CarDAO.getCarisRentList());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			RunningEndView.showError("��Ʈ �����Ͻ� ���� ���ϴ�.");
+		}
+	}
 }
 
