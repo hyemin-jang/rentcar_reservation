@@ -21,7 +21,7 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from car");
+			pstmt = con.prepareStatement("select * from car order by car_id");
 			rset = pstmt.executeQuery();
 
 			carList = new ArrayList<CarDTO>();
@@ -46,7 +46,7 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where model='스파크'");
+			pstmt = con.prepareStatement("SELECT * FROM car where model='스파크' order by car_id");
 			rset = pstmt.executeQuery();
 
 			carList = new ArrayList<CarDTO>();
@@ -71,7 +71,7 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where cartype='경차'");
+			pstmt = con.prepareStatement("SELECT * FROM car where cartype='경차' order by car_id");
 			rset = pstmt.executeQuery();
 
 			carList = new ArrayList<CarDTO>();
@@ -95,7 +95,7 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where brand='현대'");
+			pstmt = con.prepareStatement("SELECT * FROM car where brand='현대' order by car_id");
 
 			rset = pstmt.executeQuery();
 
@@ -121,7 +121,7 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where is_rent='0'");
+			pstmt = con.prepareStatement("SELECT * FROM car where is_rent='0' order by car_id");
 			rset = pstmt.executeQuery();
 
 			carList = new ArrayList<CarDTO>();
@@ -161,14 +161,14 @@ public class CarDAO {
 	}	
 	
 	// 차량 대여 가능 상태 변경
-	public static boolean updateCarIsRent(int carId, int isRent) throws SQLException{
+	public static boolean updateCarIsRent(int carId, String isRent) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = DBUtil.getConnection();
 
 			pstmt = con.prepareStatement("update car set is_rent=? where car_id=?");
-			pstmt.setInt(1, isRent);
+			pstmt.setString(1, isRent);
 			pstmt.setInt(2, carId);
 
 			int result = pstmt.executeUpdate();
@@ -190,7 +190,7 @@ public class CarDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from car where car_id=?");
+			pstmt = con.prepareStatement("select * from car where car_id=? order by car_id");
 			pstmt.setInt(1, id);
 			rset = pstmt.executeQuery();
 			
