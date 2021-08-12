@@ -20,7 +20,7 @@ public class RentDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from rent order by rent_id");
+			pstmt = con.prepareStatement("select rent_id, startday, endday, customer_id, car_id, nvl(returnday, '') from rent order by rent_id");
 			rset = pstmt.executeQuery();
 
 			rentList = new ArrayList<RentDTO>();
@@ -49,7 +49,7 @@ public class RentDAO {
 			
 			int result = pstmt.executeUpdate();
 			
-			CarDAO.updateCarIsRent(rent.getCarId(), 1);
+			CarDAO.updateCarIsRent(rent.getCarId(), "1");
 			
 			if (result == 1) {
 				return true;
