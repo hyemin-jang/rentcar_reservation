@@ -4,30 +4,30 @@ import java.util.ArrayList;
 
 public class RunningEndView {
 	
-	// ¸ðµç Â÷·® Ãâ·Â
+	// ëª¨ë“  ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 	public static void getAllList(ArrayList list){
 		if(list != null) {
 			int length = list.size();
 			
 			if( length != 0 ){
 				for(int index = 0; index < length; index++){			
-					System.out.println("°Ë»öÁ¤º¸" + (index+1) + " - " + list.get(index));
+					System.out.println("ê²€ìƒ‰ì •ë³´ " + (index+1) + " - " + list.get(index));
 				}
 			}else {
-				System.out.println("¿äÃ»ÇÏ½Å ³»¿ªÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				System.out.println("í•´ë‹¹ ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.");
 			}
 		}else {
-			System.out.println("nullÀº Çã¿ëµÇÁö ¾Ê½À´Ï´Ù.");
+			System.out.println("null ê°’ì€ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 
 	}
 	
-	// ¿¹¿Ü »óÈ² Ãâ·Â
+	// ì˜ˆì™¸ ìƒí™© ì¶œë ¥
 	public static void showError(String message){
 		System.out.println(message);		
 	}
 
-	// Á¤»ó ¼öÇà½Ã ¸Þ¼¼Áö Ãâ·Â
+	// ì •ìƒ ìˆ˜í–‰ì‹œ ë©”ì„¸ì§€ ì¶œë ¥
 	public static void showMessage(String message) {
 		System.out.println(message);
 	}	
