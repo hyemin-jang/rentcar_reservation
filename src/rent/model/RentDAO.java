@@ -11,7 +11,7 @@ import rent.model.util.DBUtil;
 
 public class RentDAO {
 
-	// °ü¸®ÀÚ - ¸ğµç ´ë¿© ³»¿ª Á¶È¸
+	// ê´€ë¦¬ì - ëª¨ë“  ëŒ€ì—¬ ë‚´ì—­ ì¡°íšŒ
 	public static ArrayList<RentDTO> getAllRentList() throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;

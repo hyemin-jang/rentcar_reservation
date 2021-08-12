@@ -6,25 +6,25 @@ import rent.model.dto.CarDTO;
 
 public class RunningEndView {
 	
-	// ¸ðµç Â÷·® Ãâ·Â
+	// ëª¨ë“  ì°¨ëŸ‰ ì¶œë ¥
 	public static void getAllCar(ArrayList<CarDTO> getAllCar){
 		if(getAllCar != null) {
 			int length = getAllCar.size();
 			
 			if( length != 0 ){
 				for(int index = 0; index < length; index++){			
-					System.out.println("°Ë»öÁ¤º¸" + (index+1) + " - " + getAllCar.get(index));
+					System.out.println("ê²€ìƒ‰ì •ë³´" + (index+1) + " - " + getAllCar.get(index));
 				}
 			}else {
-				System.out.println("¿äÃ»ÇÏ½Å Â÷·® Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				System.out.println("ìš”ì²­í•˜ì‹  ì°¨ëŸ‰ ì •ë³´ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			}
 		}else {
-			System.out.println("nullÀº Çã¿ëµÇÁö ¾Ê½À´Ï´Ù.");
+			System.out.println("nullì€ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 
 	}
 	
-	// ¿¹¿Ü »óÈ² Ãâ·Â
+	// ì˜ˆì™¸ ìƒí™© ì¶œë ¥
 	public static void showError(String message){
 		System.out.println(message);		
 	}	
