@@ -31,6 +31,17 @@ public class DBUtil {
 		return DriverManager.getConnection(dbInfo.getProperty("jdbc.url"), dbInfo.getProperty("jdbc.id"), dbInfo.getProperty("jdbc.pw"));	
 	}
 	
+	public static void close(Statement stmt) {
+		try {
+			if (stmt != null) {
+				stmt.close();
+				stmt = null;
+			}
+		} catch (SQLException s) {
+			s.printStackTrace();
+		}
+	}
+	
 	public static void close(Connection con, Statement stmt) {
 		try {
 			if (stmt != null) {

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import rent.model.dto.RentDTO;
 import rent.model.util.DBUtil;
@@ -60,24 +61,47 @@ public class RentDAO {
 		return false;
 	}
 	
-	public static boolean returnRent(int rentID) throws SQLException {
+	
+	public static int returnRent(int rentID) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		ResultSet rset = null;
 		
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("UPDATE CAR SET IS_RENT = 0 WHERE CAR_ID = (select car_id from rent where rent_id=?)");
+			pstmt = con.prepareStatement("select returnday, car_id from rent where rent_id=?");
 			pstmt.setInt(1, rentID);
-			
-			int result = pstmt.executeUpdate();			
-			
-			if (result == 0) {
-				return true;
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				Date returnDay = rset.getDate(1);
+				int carId = rset.getInt(2);
+
+				if (returnDay == null) {
+					pstmt2 = con.prepareStatement("UPDATE CAR SET IS_RENT = 0 WHERE CAR_ID = ?");
+					pstmt2.setInt(1, carId);
+					int result = pstmt2.executeUpdate();
+					
+					// 정상 반납
+					if (result == 1) {
+						pstmt3 = con.prepareStatement("UPDATE rent SET returnday = SYSDATE WHERE rent_id = ?");
+						pstmt3.setInt(1, rentID);
+						pstmt3.executeUpdate();
+						
+						return 1;
+					}
+				}else {
+					// 이미 반납된 차량
+					return -1;
+				}
 			}
 		} finally {
-			DBUtil.close(con, pstmt);
+			DBUtil.close(con, pstmt, rset);
+			DBUtil.close(pstmt2);
+			DBUtil.close(pstmt3);
 		}
-		return false;
+		// 에러
+		return 0;
 	}
-	
 }
