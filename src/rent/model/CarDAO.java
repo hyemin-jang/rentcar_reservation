@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import rent.model.dto.CarDTO;
+import rent.model.dto.RentDTO;
 import rent.model.util.DBUtil;
 
 public class CarDAO {
@@ -35,4 +36,53 @@ public class CarDAO {
 		}
 		return carList;
 	}
+	
+	
+	// 관리자 - 차량 추가
+	public static boolean addCar(CarDTO car) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("insert into car values (?,?,?,?,?,?)");
+			pstmt.setInt(1, car.getCarId());
+			pstmt.setString(2, car.getModel());
+			pstmt.setString(3, car.getBrand());
+			pstmt.setString(4, car.getCarType());
+			pstmt.setInt(5, car.getPrice());
+			pstmt.setString(6, car.getIsRent());
+			
+			int result = pstmt.executeUpdate();
+		
+			if(result == 1){
+				return true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}	
+	
+//	// 관리자 - 차량 삭제
+//	public static boolean deleteCar(int id) throws SQLException{
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		try{
+//			con = DBUtil.getConnection();
+//			pstmt = con.prepareStatement("delete from car where car_id=?");
+//			pstmt.setInt(1, car.getCarId());				
+//			
+//			int result = pstmt.executeUpdate();
+//		
+//			if(result == 1){
+//				return true;
+//			}
+//		}finally{
+//			DBUtil.close(con, pstmt);
+//		}
+//		return false;
+//	}	
+	
+	
+	
 }
