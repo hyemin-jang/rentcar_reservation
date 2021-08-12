@@ -121,17 +121,6 @@ public class Controller {
 	// 관리자 - 모든 렌트 내역 검색 로직
 	public static void getAllRentList(){
 		try{
-			RunningEndView.getAllList(RentDAO.getAllRentList());
-		}catch(SQLException s){
-			s.printStackTrace();
-			RunningEndView.showError("에러");
-		}		
-	}
-	
-
-	// 관리자 - 모든 렌트 내역 검색 로직
-	public static void getAllRentList(){
-		try{
 			RunningEndView.getRentList(RentDAO.getAllRentList());
 		}catch(SQLException s){
 			s.printStackTrace();
