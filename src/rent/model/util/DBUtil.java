@@ -11,20 +11,20 @@ import java.util.Properties;
 
 public class DBUtil {
 	private static Properties dbInfo = new Properties();
-//	private static Properties sql = new Properties();
+	private static Properties sql = new Properties();
 	
 	static {
 		try {
 			dbInfo.load(new FileInputStream("db.properties"));
-//			sql.load(new FileInputStream("rentsql.properties"));
+			sql.load(new FileInputStream("sql.properties"));
 		} catch (IOException e) {			
 			e.printStackTrace();
 		}
 	}
 	
-//	public static Properties getSql() {
-//		return sql;
-//	}
+	public static Properties getSql() {
+		return sql;
+	}
 	
 	
 	public static Connection getConnection() throws SQLException {  

@@ -6,11 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 
 import rent.model.dto.RentDTO;
 import rent.model.util.DBUtil;
 
 public class RentDAO {
+	private static Properties sql = DBUtil.getSql();
 
 	// 관리자 - 모든 대여 내역 조회
 	public static ArrayList<RentDTO> getAllRentList() throws SQLException {
@@ -21,7 +23,7 @@ public class RentDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select rent_id, startday, endday, customer_id, car_id, nvl(returnday, '') from rent order by rent_id");
+			pstmt = con.prepareStatement(sql.getProperty("getAllRentList"));
 			rset = pstmt.executeQuery();
 
 			rentList = new ArrayList<RentDTO>();
@@ -43,7 +45,7 @@ public class RentDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("insert into rent (rent_id, startday, endday, customer_id, car_id)values(rent_idx.NEXTVAL, SYSDATE, ?, ?, ?)");
+			pstmt = con.prepareStatement(sql.getProperty("addRentList"));
 			pstmt.setString(1, rent.getEndDay());
 			pstmt.setInt(2, rent.getCustomerId());
 			pstmt.setInt(3, rent.getCarId());
@@ -71,7 +73,7 @@ public class RentDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select returnday, car_id from rent where rent_id=?");
+			pstmt = con.prepareStatement(sql.getProperty("returnRentGetId"));
 			pstmt.setInt(1, rentID);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
@@ -79,13 +81,13 @@ public class RentDAO {
 				int carId = rset.getInt(2);
 
 				if (returnDay == null) {
-					pstmt2 = con.prepareStatement("UPDATE CAR SET IS_RENT = 0 WHERE CAR_ID = ?");
+					pstmt2 = con.prepareStatement(sql.getProperty("updateIsRentZero"));
 					pstmt2.setInt(1, carId);
 					int result = pstmt2.executeUpdate();
 					
 					// 정상 반납
 					if (result == 1) {
-						pstmt3 = con.prepareStatement("UPDATE rent SET returnday = SYSDATE WHERE rent_id = ?");
+						pstmt3 = con.prepareStatement(sql.getProperty("updateReturnday"));
 						pstmt3.setInt(1, rentID);
 						pstmt3.executeUpdate();
 						
