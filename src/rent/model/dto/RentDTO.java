@@ -71,18 +71,16 @@ public class RentDTO {
 	
 	@Override
 	public String toString() {
-//		return "RentDTO [rentId=" + rentId + ", startDay=" + startDay + ", endDay=" + endDay + ", customerId="
-//				+ customerId + ", carId=" + carId + ", returnDay=" + returnDay + "]";
 		StringBuilder builder = new StringBuilder();
 		builder.append("  " + rentId + "  ");
-		builder.append("\t" + startDay);
-		builder.append("\t" + endDay);
-		builder.append("\t" + customerId);
-		builder.append("\t" + carId);
+		builder.append("\t\t" + startDay);
+		builder.append("\t   " + endDay);
+		builder.append("\t\t" + customerId);
+		builder.append("\t   " + carId);
 		if (returnDay == null) {
-			builder.append("\t-");
+			builder.append("\t\t-");
 		} else {
-			builder.append("\t" + returnDay);
+			builder.append("\t\t" + returnDay);
 		}
 		
 		return builder.toString();

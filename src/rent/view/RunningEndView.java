@@ -16,9 +16,9 @@ public class RunningEndView {
 			int length = list.size();
 			
 			if( length != 0 ){
-				System.out.println("----------------------------------------------------------------");
-				System.out.println("| no. |      모델         |    브랜드      |   차종      |   대여 금액      | 대여 여부  |");
-				System.out.println("----------------------------------------------------------------");
+				System.out.println("------------------------------------------------------------------------------------------");
+				System.out.println("| no. |\t\t\t모델\t\t\t|\t브랜드        |     차종      |   대여 금액      | 대여 여부  |");
+				System.out.println("------------------------------------------------------------------------------------------");
 				for(int index = 0; index < length; index++){			
 					System.out.println(list.get(index));
 				}
@@ -39,9 +39,9 @@ public class RunningEndView {
 			int length = list.size();
 			
 			if( length != 0 ){
-				System.out.println("---------------------------------------------------------------------------------------------");
-				System.out.println("| no. |        대여 날짜                  |        반납 날짜               |  고객No. |  차량No. |      실반납 날짜               |");
-				System.out.println("---------------------------------------------------------------------------------------------");
+				System.out.println("-------------------------------------------------------------------------------------------------------");
+				System.out.println("| no. |\t\t대여 날짜                  |        반납 날짜               |  고객No. |  차량No. |\t\t실반납 날짜               |");
+				System.out.println("-------------------------------------------------------------------------------------------------------");
 				for(int index = 0; index < length; index++){
 					System.out.println(list.get(index));
 				}

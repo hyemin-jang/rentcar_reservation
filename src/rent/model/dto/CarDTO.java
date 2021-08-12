@@ -85,11 +85,15 @@ public class CarDTO {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("  " + carId + "  ");
-		builder.append("\t" + model);
-		builder.append("\t\t" + brand);
-		builder.append("\t      " + carType);
-		builder.append("\t      " + price);
-		if(Integer.parseInt(isRent) == 0) {
+			builder.append("\t\t\t\t" + model);
+		if (model.length() >= 5) {
+			builder.append("\t\t\t" + brand);		
+		}else {	
+			builder.append("\t\t\t\t" + brand);		
+		}
+		builder.append("\t\t" + carType);
+		builder.append("\t\t" + price);
+		if (Integer.parseInt(isRent) == 0) {
 			builder.append("\t대여가능");
 		} else {
 			builder.append("\t대여중");

@@ -68,8 +68,8 @@ public class RentDAO {
 			Date format2 = new Date();
 			
 			long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
-			long diffDays = diffSec / (24*60*60); //일자수 차이
-			
+			long diffDays = (diffSec / (24*60*60))+1; //일자수 차이
+			System.out.println(diffDays);
 			if(rset1.next()){
 				if(rset2.next()) {
 					System.out.println("고객님의 예약 번호는 "+rset2.getInt(1)+"번 입니다.");
