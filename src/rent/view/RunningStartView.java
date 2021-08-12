@@ -5,15 +5,15 @@ import rent.controller.CarController;
 public class RunningStartView {
 	
 	public static void main(String [] args) {
-		System.out.println("***** Â¸Ã°ÂµÃ§ Project Â°Ã‹Â»Ã¶ *****");
+		System.out.println("***** ¸ğµçÂ÷·® °Ë»ö *****");
 		CarController.getAllCar();
 		
-//		Ã‚Ã·Â·Â® Â¸Ã°ÂµÂ¨ÂºÂ° ÃÂ¶ÃˆÂ¸ (Â¾Ã†Â¹ÃÂ¶Â¼, Â½Ã®Â³ÂªÃ…Â¸ ÂµÃ®)- ÃÃ¶Ã‡Ã½
-		System.out.println("\n***** Ã‚Ã·Â·Â® Â¸Ã°ÂµÂ¨ÂºÂ° ÃÂ¶ÃˆÂ¸ *****");
+		// ¸ğµ¨¸íÀ¸·Î °Ë»ö (ex ½ºÆÄÅ©, ¾Æ¹İ¶¼ µî)
+		System.out.println("\n***** ¸ğµ¨¸íÀ¸·Î °Ë»ö *****");
 		CarController.getCarModelList();
 		
-//		Ã‚Ã·ÃÂ¾ÂºÂ° ÃÂ¶ÃˆÂ¸ (Â°Ã¦Ã‚Ã·, suv ÂµÃ®) - ÃÃ¶Ã‡Ã½
-		System.out.println("\n***** Ã‚Ã·ÃÂ¾ÂºÂ° ÃÂ¶ÃˆÂ¸ *****");
+		// Â÷Á¾À¸·Î °Ë»ö (ex °æÂ÷, suv µî)
+		System.out.println("\n***** Â÷Á¾À¸·Î °Ë»ö *****");
 		CarController.getCarTypeList();
 	}
 }
