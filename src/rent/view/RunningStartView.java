@@ -28,15 +28,15 @@ public class RunningStartView {
 
 		// 차량 추가
 		System.out.println("\n***** 차량 추가 *****");		
-		CarController.addCar(new CarDTO(5, "셀토스", "기아", "SUV", 20000, "0"));   
+		CarController.addCar(new CarDTO("셀토스", "기아", "SUV", 20000));   
 		System.out.println("***** 유효하지 않은  값으로 차량 추가*****");
-		CarController.addCar(new CarDTO(11, "셀토스", "기아", null, 20000, "0"));
+		CarController.addCar(new CarDTO("셀토스", "기아", null, 20000));
 		
 		// 차량 삭제
 		System.out.println("\n***** 차량 등록 번호로 차량 삭제 *****");
-		CarController.deleteCar(5);
+		CarController.deleteCar(3);
 		System.out.println("***** 없는 번호로 삭제 시도시 *****");
-		CarController.deleteCar(5);
+		CarController.deleteCar(100);
 		
 		// 모든 대여 내역 조회
 		System.out.println("\n***** 모든 대여 내역 조회 *****");

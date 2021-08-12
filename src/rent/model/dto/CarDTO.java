@@ -26,6 +26,13 @@ public class CarDTO {
 		this.price = price;
 		this.isRent = isRent;
 	}
+	public CarDTO(String model, String brand, String carType, int price) {
+		super();
+		this.model = model;
+		this.brand = brand;
+		this.carType = carType;
+		this.price = price;
+	}
 
 	public int getCarId() {
 		return carId;
