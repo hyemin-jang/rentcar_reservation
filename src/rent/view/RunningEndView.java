@@ -2,8 +2,6 @@ package rent.view;
 
 import java.util.ArrayList;
 
-import rent.model.dto.CarDTO;
-
 public class RunningEndView {
 	
 	// 모든 차량 출력

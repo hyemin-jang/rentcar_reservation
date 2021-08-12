@@ -1,13 +1,13 @@
 package rent.model.dto;
 
 public class CustomerDTO {
-	// °í°´ ¹øÈ£
+	// ê³ ê° ë²ˆí˜¸
 	private int customerId;
-	// °í°´ ÀÌ¸§
+	// ê³ ê° ì´ë¦„
 	private String name;
-	// °í°´ ¿¬¶ôÃ³
+	// ê³ ê° ì—°ë½ì²˜
 	private String phone;
-	// °í°´ ¸éÇã Á¤º¸
+	// ê³ ê° ë©´í—ˆ ì •ë³´
 	private String license;
 		
 	public CustomerDTO() {}

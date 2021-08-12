@@ -1,17 +1,17 @@
 package rent.model.dto;
 
 public class CarDTO {
-	// ÀÚµ¿Â÷ µî·Ï¹øÈ£
+	// ìë™ì°¨ ë“±ë¡ë²ˆí˜¸
 	private int carId;		
-	// Â÷ ¸ğµ¨¸í (¾Æ¹İ¶¼, ¼Ò³ªÅ¸..)
+	// ì°¨ ëª¨ë¸ëª… (ì•„ë°˜ë–¼, ì†Œë‚˜íƒ€..)
 	private String model;
-	// Á¦Á¶»ç ºê·£µå (Çö´ë, ±â¾Æ..)
+	// ì œì¡°ì‚¬ ë¸Œëœë“œ (í˜„ëŒ€, ê¸°ì•„..)
 	private String brand;  
-	// Â÷Á¾ (¼ÒÇü, ÁßÇü, ..)
+	// ì°¨ì¢… (ì†Œí˜•, ì¤‘í˜•, ..)
 	private String carType;
-	// 1¹Ú´ç ´ë¿© °¡°İ
+	// 1ë°•ë‹¹ ëŒ€ì—¬ ê°€ê²©
 	private int price;
-	// ´ë¿© ¿©ºÎ (0,1)
+	// ëŒ€ì—¬ ì—¬ë¶€ (0,1)
 	private String isRent;
 	
 	public CarDTO() {}

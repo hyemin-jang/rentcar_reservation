@@ -8,51 +8,51 @@ import rent.model.dto.CarDTO;
 import rent.view.RunningEndView;
 
 public class CarController {
-	// ¸ğµç Â÷·® °Ë»ö
+	// ëª¨ë“  ì°¨ëŸ‰ ê²€ìƒ‰
 	public static void getAllCar(){
 		try{
 			RunningEndView.getAllList(CarDAO.getAllCar());
 		}catch(SQLException s){
 			s.printStackTrace();
-			RunningEndView.showError("¸ğµç Â÷·® °Ë»ö½Ã ¿¡·¯ ¹ß»ı");
+			RunningEndView.showError("ëª¨ë“  ì°¨ëŸ‰ ê²€ìƒ‰ì‹œ ì—ëŸ¬ ë°œìƒ");
 		}
 	}
 
-	// ¸ğµ¨¸íÀ¸·Î °Ë»ö
+	// ëª¨ë¸ëª…ìœ¼ë¡œ ê²€ìƒ‰
 	public static void getCarModelList() {
 		try {
 			RunningEndView.getAllList(CarDAO.getCarModelList());
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RunningEndView.showError("°Ë»öÇÏ½Å ¸ğµ¨ÀÌ ¾ø½À´Ï´Ù.");
+			RunningEndView.showError("ê²€ìƒ‰í•˜ì‹  ëª¨ë¸ì´ ì—†ìŠµë‹ˆë‹¤.");
 		}
 	}
 
-	// Â÷Á¾À¸·Î °Ë»ö
+	// ì°¨ì¢…ìœ¼ë¡œ ê²€ìƒ‰
 	public static void getCarTypeList() {
 		try {
 			RunningEndView.getAllList(CarDAO.getCarTypeList());
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RunningEndView.showError("°Ë»öÇÏ½Å Â÷Á¾ÀÌ ¾ø½À´Ï´Ù.");
+			RunningEndView.showError("ê²€ìƒ‰í•˜ì‹  ì°¨ì¢…ì´ ì—†ìŠµë‹ˆë‹¤.");
 		}
 	}
 	
-	// °ü¸®ÀÚ - Â÷·® µî·Ï ·ÎÁ÷
+	// ê´€ë¦¬ì - ì°¨ëŸ‰ ë“±ë¡ ë¡œì§
 	public static boolean addCar(CarDTO car) {
 		boolean result = false;
 		
 		try {
 			result = CarDAO.addCar(car);
-			RunningEndView.showMessage("Â÷·®À» µî·ÏÇß½À´Ï´Ù.");
+			RunningEndView.showMessage("ì°¨ëŸ‰ì„ ë“±ë¡í–ˆìŠµë‹ˆë‹¤.");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RunningEndView.showError("Â÷·® µî·Ï¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+			RunningEndView.showError("ì°¨ëŸ‰ ë“±ë¡ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		}
 		return result;   
 	}
 	
-	// °ü¸®ÀÚ - Â÷·® »èÁ¦ ·ÎÁ÷
+	// ê´€ë¦¬ì - ì°¨ëŸ‰ ì‚­ì œ ë¡œì§
 	public static boolean deleteCar(int id) {
 		boolean result = false;
 		CarDTO car = null;
@@ -60,24 +60,24 @@ public class CarController {
 		try {
 			car = CarDAO.getCar(id);   // null
 			result = CarDAO.deleteCar(car);
-			RunningEndView.showMessage("Â÷·®À» »èÁ¦Çß½À´Ï´Ù.");
+			RunningEndView.showMessage("ì°¨ëŸ‰ì„ ì‚­ì œí–ˆìŠµë‹ˆë‹¤.");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RunningEndView.showError("Â÷·® »èÁ¦¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+			RunningEndView.showError("ì°¨ëŸ‰ ì‚­ì œì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-			RunningEndView.showError("ÇØ´ç Â÷·®ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+			RunningEndView.showError("í•´ë‹¹ ì°¨ëŸ‰ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 		return result;   
 	}	
 	
-	// °ü¸®ÀÚ - ¸ğµç ·»Æ® ³»¿ª °Ë»ö ·ÎÁ÷
+	// ê´€ë¦¬ì - ëª¨ë“  ë ŒíŠ¸ ë‚´ì—­ ê²€ìƒ‰ ë¡œì§
 	public static void getAllRentList(){
 		try{
 			RunningEndView.getAllList(RentDAO.getAllRentList());
 		}catch(SQLException s){
 			s.printStackTrace();
-			RunningEndView.showError("¿¡·¯");
+			RunningEndView.showError("ì—ëŸ¬");
 		}		
 	}
 }
