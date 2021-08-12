@@ -11,7 +11,7 @@ import rent.model.util.DBUtil;
 
 public class CarDAO {
 
-	// ¸ğµç Â÷·® Á¶È¸ 
+	// Â¸Ã°ÂµÃ§ Ã‚Ã·Â·Â® ÃÂ¶ÃˆÂ¸ 
 	public static ArrayList<CarDTO> getAllCar() throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -44,7 +44,7 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where model='½ºÆÄÅ©'");
+			pstmt = con.prepareStatement("SELECT * FROM car where model='Â½ÂºÃ†Ã„Ã…Â©'");
 			rset = pstmt.executeQuery();
 			
 			carList = new ArrayList<CarDTO>();
@@ -68,7 +68,7 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where cartype='°æÂ÷'");
+			pstmt = con.prepareStatement("SELECT * FROM car where cartype='Â°Ã¦Ã‚Ã·'");
 			rset = pstmt.executeQuery();
 			
 			carList = new ArrayList<CarDTO>();

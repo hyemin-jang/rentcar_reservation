@@ -20,7 +20,7 @@ CREATE TABLE car (
        brand          		VARCHAR2(20) NOT NULL,
        cartype   			VARCHAR2(20) NOT NULL,
        price 				NUMBER NOT NULL,
-       is_rent				CHAR(1) NOT NULL
+       is_rent				VARCHAR2(1) NOT NULL
 );
 
 
