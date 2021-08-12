@@ -1,10 +1,7 @@
--- �� ����
 DROP TABLE customer cascade constraint;
 
--- �ڵ��� ����
 DROP TABLE car cascade constraint;
 
--- ���� ����
 DROP TABLE rent cascade constraint;
 
 DROP SEQUENCE customer_idx;

@@ -15,16 +15,7 @@ public class CarDTO {
 	private String isRent;
 
 	public CarDTO() {
-	}
-	
-	public CarDTO(String model, String brand, String carType, int price, String isRent) {
-		super();
-		this.model = model;
-		this.brand = brand;
-		this.carType = carType;
-		this.price = price;
-		this.isRent = isRent;
-	}
+	}	
 	public CarDTO(int carId, String model, String brand, String carType, int price, String isRent) {
 		super();
 		this.carId = carId;

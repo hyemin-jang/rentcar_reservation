@@ -1,14 +1,14 @@
--- customer insert[°í°´ Á¤º¸ ÀúÀå]¾Æ¹Ý¶¼ Â÷Á¾
-insert into customer values(customer_idx.NEXTVAL, 'À¯Àç¼®', '010-2384-2842', '11-23-293847-38');
-insert into customer values(customer_idx.NEXTVAL, '½Åµ¿¿±', '010-3829-3892', '42-38-293832-38');
-insert into customer values(customer_idx.NEXTVAL, 'ÀÌ¿µÀÚ', '010-3298-2938', '23-28-589334-38');
+-- customer insert
+insert into customer values(customer_idx.NEXTVAL, 'ï¿½ï¿½ï¿½ç¼®', '010-2384-2842', '11-23-293847-38');
+insert into customer values(customer_idx.NEXTVAL, 'ï¿½Åµï¿½ï¿½ï¿½', '010-3829-3892', '42-38-293832-38');
+insert into customer values(customer_idx.NEXTVAL, 'ï¿½Ì¿ï¿½ï¿½ï¿½', '010-3298-2938', '23-28-589334-38');
 
--- car insert[·»Æ®Ä« Á¤º¸ ÀúÀå]
-insert into car values(car_idx.NEXTVAL, '½ºÆÄÅ©', '½¦º¸·¹', '°æÂ÷', 10000, '0');
-insert into car values(car_idx.NEXTVAL, '¾Æ¹Ý¶¼', 'Çö´ë', 'ÁØÁßÇü', 20000, '0');
-insert into car values(car_idx.NEXTVAL, '·¹ÀÌ', '±â¾Æ', '°æÂ÷', 10000, '0');
+-- car insert
+insert into car values(car_idx.NEXTVAL, 'ï¿½ï¿½ï¿½ï¿½Å©', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 10000, '0');
+insert into car values(car_idx.NEXTVAL, 'ï¿½Æ¹Ý¶ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 20000, '0');
+insert into car values(car_idx.NEXTVAL, 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 10000, '0');
 
--- rent insert[¿¹¾à Á¤º¸ ÀúÀå]
+-- rent insert[ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½]
 insert into rent values(rent_idx.NEXTVAL, TO_DATE('2021-07-21'), TO_DATE('2021-08-01'), 2, 1, TO_DATE('2021-08-01'));
 insert into rent values(rent_idx.NEXTVAL, TO_DATE('2021-08-08'), TO_DATE('2021-08-10'), 3, 2, TO_DATE('2021-08-10'));
 insert into rent values(rent_idx.NEXTVAL, TO_DATE('2021-06-01'), TO_DATE('2021-07-31'), 1, 3, TO_DATE('2021-07-31'));

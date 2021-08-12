@@ -143,7 +143,7 @@ public class CarDAO {
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("insert into car values (car_idx.nextval,?,?,?,?,'0')");
+			pstmt = con.prepareStatement("insert into car values (car_idx.nextval,?,?,?,?,0)");
 			pstmt.setString(1, car.getModel());
 			pstmt.setString(2, car.getBrand());
 			pstmt.setString(3, car.getCarType());
