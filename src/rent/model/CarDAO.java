@@ -143,13 +143,11 @@ public class CarDAO {
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("insert into car values (?,?,?,?,?,?)");
-			pstmt.setInt(1, car.getCarId());
-			pstmt.setString(2, car.getModel());
-			pstmt.setString(3, car.getBrand());
-			pstmt.setString(4, car.getCarType());
-			pstmt.setInt(5, car.getPrice());
-			pstmt.setString(6, car.getIsRent());
+			pstmt = con.prepareStatement("insert into car values (car_idx.nextval,?,?,?,?,'0')");
+			pstmt.setString(1, car.getModel());
+			pstmt.setString(2, car.getBrand());
+			pstmt.setString(3, car.getCarType());
+			pstmt.setInt(4, car.getPrice());
 			
 			int result = pstmt.executeUpdate();
 		

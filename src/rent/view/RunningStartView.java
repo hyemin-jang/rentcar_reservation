@@ -36,7 +36,7 @@ public class RunningStartView {
 		
 		// 차량 삭제
 		System.out.println("\n***** 차량 등록 번호로 차량 삭제 *****");
-		CarController.deleteCar(5);
+		CarController.deleteCar(4);
 //		System.out.println("***** 없는 번호로 삭제 시도시 *****");
 //		CarController.deleteCar(5);
 		
