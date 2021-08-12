@@ -1,20 +1,22 @@
 package rent.model.dto;
 
 public class CarDTO {
-	// ÀÚµ¿Â÷ µî·Ï¹øÈ£
-	private int carId;		
-	// Â÷ ¸ğµ¨¸í (¾Æ¹İ¶¼, ¼Ò³ªÅ¸..)
+	// ìë™ì°¨ ë“±ë¡ë²ˆí˜¸
+	private int carId;
+	// ì°¨ ëª¨ë¸ëª… (ì•„ë°˜ë–¼, ì†Œë‚˜íƒ€..)
 	private String model;
-	// Á¦Á¶»ç ºê·£µå (Çö´ë, ±â¾Æ..)
-	private String brand;  
-	// Â÷Á¾ (¼ÒÇü, ÁßÇü, ..)
+	// ì œì¡°ì‚¬ ë¸Œëœë“œ (í˜„ëŒ€, ê¸°ì•„..)
+	private String brand;
+	// ì°¨ì¢… (ì†Œí˜•, ì¤‘í˜•, ..)
 	private String carType;
-	// 1¹Ú´ç ´ë¿© °¡°İ
+	// 1ë°•ë‹¹ ëŒ€ì—¬ ê°€ê²©
 	private int price;
-	// ´ë¿© ¿©ºÎ (0,1)
+	// ëŒ€ì—¬ ì—¬ë¶€ (0,1)
 	private String isRent;
-	
-	public CarDTO() {}
+
+	public CarDTO() {
+	}
+
 	public CarDTO(int carId, String model, String brand, String carType, int price, String isRent) {
 		super();
 		this.carId = carId;
@@ -24,48 +26,58 @@ public class CarDTO {
 		this.price = price;
 		this.isRent = isRent;
 	}
-	
+
 	public int getCarId() {
 		return carId;
 	}
+
 	public void setCarId(int carId) {
 		this.carId = carId;
 	}
+
 	public String getModel() {
 		return model;
 	}
+
 	public void setModel(String model) {
 		this.model = model;
 	}
+
 	public String getBrand() {
 		return brand;
 	}
+
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
+
 	public String getCarType() {
 		return carType;
 	}
+
 	public void setCarType(String carType) {
 		this.carType = carType;
 	}
+
 	public int getPrice() {
 		return price;
 	}
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
 	public String getIsRent() {
 		return isRent;
 	}
+
 	public void setIsRent(String isRent) {
 		this.isRent = isRent;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "CarDTO [carId=" + carId + ", model=" + model + ", brand=" + brand + ", carType=" + carType + ", price="
-				+ price + ", isRent=" + isRent + "]";
-	}	
-	
+		return "CarDTO [carId=" + carId + ", model=" + model + ", brand=" + brand + ", carType=" + carType + ", price=" + price + ", isRent=" + isRent + "]";
+	}
+
 }

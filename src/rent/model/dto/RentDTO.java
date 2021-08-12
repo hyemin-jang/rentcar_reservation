@@ -1,17 +1,17 @@
 package rent.model.dto;
 
 public class RentDTO {
-	// ¿¹¾à¹øÈ£
+	// ì˜ˆì•½ë²ˆí˜¸
 	private int rentId;
-	// Â÷·® ¿¹¾à ½ÃÀÛÀÏ
+	// ì°¨ëŸ‰ ì˜ˆì•½ ì‹œì‘ì¼
 	private String startDay;
-	// Â÷·® ¿¹¾à Á¾·áÀÏ
+	// ì°¨ëŸ‰ ì˜ˆì•½ ì¢…ë£Œì¼
 	private String endDay;
-	// ¿¹¾à °í°´ ¹øÈ£
+	// ì˜ˆì•½ ê³ ê° ë²ˆí˜¸
 	private int customerId;
-	// ¿¹¾à Â÷·® ¹øÈ£
+	// ì˜ˆì•½ ì°¨ëŸ‰ ë²ˆí˜¸
 	private int carId;
-	// ½Ç ¹İ³³ÀÏ
+	// ì‹¤ ë°˜ë‚©ì¼
 	private String returnDay;
 	
 	public RentDTO() {}

@@ -4,40 +4,40 @@ import rent.controller.CarController;
 import rent.model.dto.CarDTO;
 
 public class RunningStartView {
-	
-	public static void main(String [] args) {
-		// ¸ğµç Â÷·® °Ë»ö
-		System.out.println("***** ¸ğµçÂ÷·® °Ë»ö *****");
+
+	public static void main(String[] args) {
+		// ëª¨ë“  ì°¨ëŸ‰ ê²€ìƒ‰
+		System.out.println("***** ëª¨ë“ ì°¨ëŸ‰ ê²€ìƒ‰ *****");
 		CarController.getAllCar();
-		
-		// ¸ğµ¨¸íÀ¸·Î °Ë»ö (ex ½ºÆÄÅ©, ¾Æ¹İ¶¼ µî)
-		System.out.println("\n***** ¸ğµ¨¸íÀ¸·Î °Ë»ö *****");
+
+		// ëª¨ë¸ëª…ìœ¼ë¡œ ê²€ìƒ‰ (ex ìŠ¤íŒŒí¬, ì•„ë°˜ë–¼ ë“±)
+		System.out.println("\n***** ëª¨ë¸ëª…ìœ¼ë¡œ ê²€ìƒ‰ *****");
 		CarController.getCarModelList();
-		
-		// Â÷Á¾À¸·Î °Ë»ö (ex °æÂ÷, suv µî)
-		System.out.println("\n***** Â÷Á¾À¸·Î °Ë»ö *****");
+
+		// ì°¨ì¢…ìœ¼ë¡œ ê²€ìƒ‰ (ex ê²½ì°¨, suv ë“±)
+		System.out.println("\n***** ì°¨ì¢…ìœ¼ë¡œ ê²€ìƒ‰ *****");
 		CarController.getCarTypeList();
-		
-		// ºê·£µå·Î °Ë»ö (ex Çö´ë, ±â¾Æ µî)
-		System.out.println("\n***** ºê·£µå·Î °Ë»ö *****");
+
+		// ë¸Œëœë“œë¡œ ê²€ìƒ‰ (ex í˜„ëŒ€, ê¸°ì•„ ë“±)
+		System.out.println("\n***** ë¸Œëœë“œë¡œ ê²€ìƒ‰ *****");
 		CarController.getCarBrandList();
-		
-		// ´ë¿©°¡´ÉÇÑ Â÷·® °Ë»ö
-		System.out.println("\n***** ´ë¿© °¡´ÉÇÑ Â÷·® °Ë»ö *****");
+
+		// ëŒ€ì—¬ê°€ëŠ¥í•œ ì°¨ëŸ‰ ê²€ìƒ‰
+		System.out.println("\n***** ëŒ€ì—¬ ê°€ëŠ¥í•œ ì°¨ëŸ‰ ê²€ìƒ‰ *****");
 		CarController.getCarisRentList();
-    
-		// °ü¸®ÀÚ - Â÷·® Ãß°¡
-		System.out.println("\n***** Â÷·® Ãß°¡ *****");		
-		CarController.addCar(new CarDTO(10, "¼¿Åä½º", "±â¾Æ", "SUV", 20000, "0"));    // car_id ÀÚµ¿ºÎ¿© °¡´É????
-		System.out.println("***** À¯È¿ÇÏÁö ¾ÊÀº  °ªÀ¸·Î Â÷·® Ãß°¡*****");
-		CarController.addCar(new CarDTO(11, "¼¿Åä½º", "±â¾Æ", null, 20000, "0"));
-		
-		System.out.println("***** Â÷·® µî·Ï ¹øÈ£·Î Â÷·® »èÁ¦ *****");
+
+		// ê´€ë¦¬ì - ì°¨ëŸ‰ ì¶”ê°€
+		System.out.println("\n***** ì°¨ëŸ‰ ì¶”ê°€ *****");
+		CarController.addCar(new CarDTO(10, "ì…€í† ìŠ¤", "ê¸°ì•„", "SUV", 20000, "0")); // car_id ìë™ë¶€ì—¬ ê°€ëŠ¥????
+		System.out.println("***** ìœ íš¨í•˜ì§€ ì•Šì€  ê°’ìœ¼ë¡œ ì°¨ëŸ‰ ì¶”ê°€ *****");
+		CarController.addCar(new CarDTO(11, "ì…€í† ìŠ¤", "ê¸°ì•„", null, 20000, "0"));
+
+		System.out.println("***** ì°¨ëŸ‰ ë“±ë¡ ë²ˆí˜¸ë¡œ ì°¨ëŸ‰ ì‚­ì œ *****");
 		CarController.deleteCar();
-		System.out.println("\n***** ¾ø´Â ¹øÈ£·Î »èÁ¦ ½Ãµµ½Ã *****");
+		System.out.println("\n***** ì—†ëŠ” ë²ˆí˜¸ë¡œ ì‚­ì œ ì‹œë„ì‹œ *****");
 		CarController.deleteCar();
-		
-		System.out.println("\n***** ¸ğµç ´ë¿© ³»¿ª Á¶È¸ *****");
+
+		System.out.println("\n***** ëª¨ë“  ëŒ€ì—¬ ë‚´ì—­ ì¡°íšŒ *****");
 		CarController.getAllRentList();
 	}
 }

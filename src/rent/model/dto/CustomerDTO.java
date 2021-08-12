@@ -1,16 +1,18 @@
 package rent.model.dto;
 
 public class CustomerDTO {
-	// ∞Ì∞¥ π¯»£
+	// Í≥†Í∞ù Î≤àÌò∏
 	private int customerId;
-	// ∞Ì∞¥ ¿Ã∏ß
+	// Í≥†Í∞ù Ïù¥Î¶Ñ
 	private String name;
-	// ∞Ì∞¥ ø¨∂Ù√≥
+	// Í≥†Í∞ù Ïó∞ÎùΩÏ≤ò
 	private String phone;
-	// ∞Ì∞¥ ∏È«„ ¡§∫∏
+	// Í≥†Í∞ù Î©¥Ìóà Ï†ïÎ≥¥
 	private String license;
-		
-	public CustomerDTO() {}
+
+	public CustomerDTO() {
+	}
+
 	public CustomerDTO(int customerId, String name, String phone, String license) {
 		super();
 		this.customerId = customerId;
@@ -18,36 +20,42 @@ public class CustomerDTO {
 		this.phone = phone;
 		this.license = license;
 	}
-	
+
 	public int getCustomerId() {
 		return customerId;
 	}
+
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getLicense() {
 		return license;
 	}
+
 	public void setLicense(String license) {
 		this.license = license;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "CustomerDTO [customerId=" + customerId + ", name=" + name + ", phone=" + phone + ", license=" + license
-				+ "]";
+		return "CustomerDTO [customerId=" + customerId + ", name=" + name + ", phone=" + phone + ", license=" + license + "]";
 	}
-	
-}	
+
+}
