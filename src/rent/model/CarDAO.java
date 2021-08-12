@@ -85,4 +85,53 @@ public class CarDAO {
 		}
 		return carList;
 	}
+
+	public static ArrayList<CarDTO> getCarBrandList() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<CarDTO> carList = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("SELECT * FROM car where brand='Çö´ë'");
+			rset = pstmt.executeQuery();
+			
+			carList = new ArrayList<CarDTO>();
+			while (rset.next()) {
+				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6)));
+			}
+		} catch(SQLException s){
+			s.printStackTrace();
+			throw s;
+		}finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		
+		return carList;
+	}
+
+	public static ArrayList<CarDTO> getCarisRentList() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<CarDTO> carList = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("SELECT * FROM car where is_rent='0'");
+			rset = pstmt.executeQuery();
+			
+			carList = new ArrayList<CarDTO>();
+			while (rset.next()) {
+				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6)));
+			}
+		} catch(SQLException s){
+			s.printStackTrace();
+			throw s;
+		}finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return carList;
+	}
 }
