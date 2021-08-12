@@ -3,7 +3,6 @@ package rent.controller;
 import java.sql.SQLException;
 
 import rent.model.CarDAO;
-import rent.model.RentDAO;
 import rent.model.dto.CarDTO;
 import rent.view.RunningEndView;
 
@@ -89,16 +88,7 @@ public class CarController {
 			RunningEndView.showError("해당 차량이 존재하지 않습니다.");
 		}
 		return result;   
-	}	
+	}		
 	
-	// 관리자 - 모든 렌트 내역 검색 로직
-	public static void getAllRentList(){
-		try{
-			RunningEndView.getAllList(RentDAO.getAllRentList());
-		}catch(SQLException s){
-			s.printStackTrace();
-			RunningEndView.showError("에러");
-		}		
-	}
 	
 }

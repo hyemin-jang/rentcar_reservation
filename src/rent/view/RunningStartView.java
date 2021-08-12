@@ -42,12 +42,12 @@ public class RunningStartView {
 		
 		// 모든 대여 내역 조회
 		System.out.println("\n***** 모든 대여 내역 조회 *****");
-		CarController.getAllRentList();
+		RentController.getAllRentList();
 		
 		//차량 대여
 		System.out.println("\n***** 차량 대여 *****");
 		RentController.addRentList(new RentDTO(null, "2021-08-14", 2, 2, null));
 		System.out.println("\n***** 대여 완료 후 모든 대여 내역 조회 *****");
-		CarController.getAllRentList();
+		RentController.getAllRentList();
 	}
 }
