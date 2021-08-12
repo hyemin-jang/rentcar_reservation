@@ -28,12 +28,12 @@ CREATE TABLE rent (
        startday     		DATE NOT NULL,
        endday  				DATE NOT NULL,
        customer_id			NUMBER NOT NULL,
-       car_id				NUMBER NOT NULL,
-       returnday			DATE DEFAULT NULL
+       car_id				NUMBER,
+       returnday			DATE DEFAULT NULL       
 );
 
 ALTER TABLE rent ADD FOREIGN KEY (customer_id) REFERENCES customer (customer_id);
-ALTER TABLE rent ADD FOREIGN KEY (car_id) REFERENCES car (car_id);
+ALTER TABLE rent ADD FOREIGN KEY (car_id) REFERENCES car (car_id) ON DELETE SET NULL;
 
 CREATE SEQUENCE customer_idx START WITH 1 INCREMENT BY 1 MAXVALUE 10000000 CYCLE NOCACHE;
 CREATE SEQUENCE car_idx START WITH 1 INCREMENT BY 1 MAXVALUE 10000000 CYCLE NOCACHE;

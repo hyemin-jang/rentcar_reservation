@@ -1,6 +1,5 @@
 package rent.controller;
 
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -115,7 +114,7 @@ public class Controller {
 			result = CarDAO.deleteCar(car);
 			RunningEndView.showMessage("차량을 삭제했습니다.");
 		} catch (SQLException e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			RunningEndView.showError("차량 삭제에 실패하였습니다.");
 		} catch (NullPointerException e) {
 //			e.printStackTrace();
@@ -139,7 +138,6 @@ public class Controller {
 		System.out.println("***** 안녕하세요! 플레이렌트카입니다. *****");
 		int choice = -1;
 		Scanner sc = new Scanner(new InputStreamReader(System.in));
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		while (true) {
 			System.out.println("\n0.메뉴 종료하기 \t1.모든 차량 조회하기  \t2.모델명으로 검색   \t3.차종으로 검색 "
@@ -169,7 +167,7 @@ public class Controller {
 				getCarModelList(carModel);
 
 			} else if (choice == 3) {
-				System.out.println("검색하실 차종을 입력해주세요. ex) 경차, SUV, ...");
+				System.out.println("검색하실 차종을 입력해주세요 [경차/준중형/중형/SUV].");
 				String carType = sc.next();
 				getCarTypeList(carType);
 
@@ -192,11 +190,13 @@ public class Controller {
 
 			} else if (choice == 7) {
 				System.out.println("예약번호를 입력해주세요");
+				
 				int rentId = 0;
 				try {
 					rentId = Integer.parseInt(sc.next());
 				} catch (NumberFormatException e) {
-					System.out.println("숫자를 입력하지 않아 기본값 0으로 저장됩니다.");
+					System.out.println("숫자로 입력해주세요");
+					
 				}
 				returnRent(rentId);
 
@@ -220,10 +220,11 @@ public class Controller {
 			} else if (choice == 9) {
 				int carId = 0;
 				try {
+					System.out.println("삭제할 차량 번호를 입력하세요.");
 					carId = Integer.parseInt(sc.next());
 				} catch (NumberFormatException e) {
 //					e.printStackTrace();
-					System.out.println("숫자로 입력해주세요.");
+					System.out.println("숫자를 입력하지 않아 조회할 수 없습니다.");
 				}
 				deleteCar(carId);
 			} else if (choice == 10) {

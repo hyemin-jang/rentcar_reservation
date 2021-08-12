@@ -42,13 +42,13 @@ public class RentDAO {
 		return rentList;
 	}
 
+	// 차량 대여
 	public static boolean addRentList(RentDTO rent) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rset = null;
 		Date now = new Date();
-		CarDTO carInfo = new CarDTO();
 
 		try {
 			con = DBUtil.getConnection();
@@ -89,7 +89,7 @@ public class RentDAO {
 		return false;
 	}
 	
-	
+	// 차량 반납
 	public static int returnRent(int rentID) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
