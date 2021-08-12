@@ -34,6 +34,13 @@ public class CarDTO {
 		this.price = price;
 		this.isRent = isRent;
 	}
+	public CarDTO(String model, String brand, String carType, int price) {
+		super();
+		this.model = model;
+		this.brand = brand;
+		this.carType = carType;
+		this.price = price;
+	}
 
 	public int getCarId() {
 		return carId;
@@ -86,6 +93,14 @@ public class CarDTO {
 	@Override
 	public String toString() {
 		return "CarDTO [carId=" + carId + ", model=" + model + ", brand=" + brand + ", carType=" + carType + ", price=" + price + ", isRent=" + isRent + "]";
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("프로보노 정보 1. 프로보노 아이디 = ");
+//		builder.append(probonoId);
+//		builder.append("2. 프로보노 이름 : ");
+//		builder.append(probonoName);
+//		builder.append("3. 프로보노 목적 : ");
+//		builder.append(probonoPurpose);
+//		return builder.toString();
 	}
 
 }
