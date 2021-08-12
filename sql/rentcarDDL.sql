@@ -1,7 +1,5 @@
 DROP TABLE customer cascade constraint;
-
 DROP TABLE car cascade constraint;
-
 DROP TABLE rent cascade constraint;
 
 DROP SEQUENCE customer_idx;
@@ -11,13 +9,13 @@ DROP SEQUENCE rent_idx;
 CREATE TABLE customer (
        customer_id          NUMBER	 PRIMARY KEY,
        name               	VARCHAR2(20) NOT NULL,
-       phone         		VARCHAR2(20) NOT NULL,
+       phone         		VARCHAR2(13) NOT NULL,
        license              VARCHAR2(20) NOT NULL
 );
 
 CREATE TABLE car (
        car_id        		NUMBER PRIMARY KEY,
-       model                VARCHAR2(20) NOT NULL,
+       model                VARCHAR2(50) NOT NULL,
        brand          		VARCHAR2(20) NOT NULL,
        cartype   			VARCHAR2(20) NOT NULL,
        price 				NUMBER NOT NULL,
