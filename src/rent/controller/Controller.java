@@ -122,10 +122,8 @@ public class Controller {
 			result = CarDAO.deleteCar(car);
 			RunningEndView.showMessage("차량을 삭제했습니다.");
 		} catch (SQLException e) {
-//			e.printStackTrace();
 			RunningEndView.showError("차량 삭제에 실패하였습니다.");
 		} catch (NullPointerException e) {
-//			e.printStackTrace();
 			RunningEndView.showError("해당 차량이 존재하지 않습니다.");
 		}
 		return result;
@@ -155,10 +153,7 @@ public class Controller {
 
 			try {
 				choice = Integer.parseInt(sc.next());
-//			} catch (IOException e) {
-//				e.printStackTrace();
 			} catch (NumberFormatException e) {
-//				e.printStackTrace();
 				System.out.println("숫자로 입력해주세요.");
 			}
 
@@ -223,7 +218,6 @@ public class Controller {
 				try {
 					price = Integer.parseInt(sc.next());
 				} catch (NumberFormatException e) {
-//					e.printStackTrace();
 					System.out.println("숫자를 입력하지 않아 기본값 0으로 저장됩니다.");
 				}
 				addCar(new CarDTO(model, brand, carType, price));
@@ -233,7 +227,6 @@ public class Controller {
 				try {
 					carId = Integer.parseInt(sc.next());
 				} catch (NumberFormatException e) {
-//					e.printStackTrace();
 					System.out.println("숫자로 입력해주세요.");
 				}
 				deleteCar(carId);
