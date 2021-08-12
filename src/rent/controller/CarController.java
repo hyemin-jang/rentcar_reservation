@@ -80,5 +80,43 @@ public class CarController {
 			RunningEndView.showError("에러");
 		}		
 	}
-}
 
+	// 모델명으로 검색
+	public static void getCarModelList() {
+		try {
+			RunningEndView.getAllCar(CarDAO.getCarModelList());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			RunningEndView.showError("검색하신 모델이 없습니다.");
+		}
+	}
+
+	// 차종으로 검색
+	public static void getCarTypeList() {
+		try {
+			RunningEndView.getAllCar(CarDAO.getCarTypeList());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			RunningEndView.showError("검색하신 차종이 없습니다.");
+		}
+	}
+
+	public static void getCarBrandList() {
+		try {
+			RunningEndView.getAllCar(CarDAO.getCarBrandList());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			RunningEndView.showError("검색하신 브랜드가 없습니다.");
+		}
+	}
+
+	public static void getCarisRentList() {
+		try {
+			RunningEndView.getAllCar(CarDAO.getCarisRentList());
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			RunningEndView.showError("렌트 가능하신 차량이 없습니다.");
+		}
+	}
+}
