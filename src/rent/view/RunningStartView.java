@@ -41,5 +41,5 @@ public class RunningStartView {
 		// 모든 대여 내역 조회
 		System.out.println("\n***** 모든 대여 내역 조회 *****");
 		CarController.getAllRentList();
-
+	}
 }

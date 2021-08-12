@@ -1,10 +1,10 @@
--- °í°´ Á¤º¸
+-- ê³ ê° ì •ë³´
 DROP TABLE customer cascade constraint;
 
--- ÀÚµ¿Â÷ Á¤º¸
+-- ìë™ì°¨ ì •ë³´
 DROP TABLE car cascade constraint;
 
--- ¿¹¾à Á¤º¸
+-- ì˜ˆì•½ ì •ë³´
 DROP TABLE rent cascade constraint;
 
 CREATE TABLE customer (

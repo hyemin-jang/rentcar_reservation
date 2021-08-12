@@ -41,7 +41,7 @@ public class CarController {
 	// 브랜드로 검색
 	public static void getCarBrandList() {
 		try {
-			RunningEndView.getAllCar(CarDAO.getCarBrandList());
+			RunningEndView.getAllList(CarDAO.getCarBrandList());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			RunningEndView.showError("검색하신 브랜드가 없습니다.");
@@ -51,8 +51,7 @@ public class CarController {
 	// 현재 대여 가능한 차량 검색
 	public static void getCarisRentList() {
 		try {
-			RunningEndView.getAllCar(CarDAO.getCarisRentList());
-
+			RunningEndView.getAllList(CarDAO.getCarisRentList());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			RunningEndView.showError("렌트 가능하신 차량이 없습니다.");
