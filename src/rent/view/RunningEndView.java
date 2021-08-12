@@ -6,25 +6,25 @@ import rent.model.dto.CarDTO;
 
 public class RunningEndView {
 	
-	//¸ğµç ÇÁ·ÎÁ§Æ®µé Ãâ·Â
+	//ëª¨ë“  í”„ë¡œì íŠ¸ë“¤ ì¶œë ¥
 	public static void getAllCar(ArrayList<CarDTO> getAllCar){
 		if(getAllCar != null) {
-			int length = getAllCar.size();  //ÀúÀåµÈ µ¥ÀÌÅÍ °³¼ö ¹İÈ¯ 
+			int length = getAllCar.size();  //ì €ì¥ëœ ë°ì´í„° ê°œìˆ˜ ë°˜í™˜ 
 			
 			if( length != 0 ){
 				for(int index = 0; index < length; index++){			
-					System.out.println("°Ë»öÁ¤º¸ " + (index+1) + " - " + getAllCar.get(index));
+					System.out.println("ê²€ìƒ‰ì •ë³´ " + (index+1) + " - " + getAllCar.get(index));
 				}
 			}else {
-				System.out.println("¿äÃ»ÇÏ½Å ÇÁ·ÎÁ§Æ® Á¤º¸´Â 1µµ ¾ø½À´Ï´Ù.");
+				System.out.println("ìš”ì²­í•˜ì‹  í”„ë¡œì íŠ¸ ì •ë³´ëŠ” 1ë„ ì—†ìŠµë‹ˆë‹¤.");
 			}
 		}else {
-			System.out.println("¿äÃ»ÇÏ½Å ÇÁ·ÎÁ§Æ®µé Á¤º¸´Â ¾ø½À´Ï´Ù.");
+			System.out.println("ìš”ì²­í•˜ì‹  í”„ë¡œì íŠ¸ë“¤ ì •ë³´ëŠ” ì—†ìŠµë‹ˆë‹¤.");
 		}
 
 	}
 	
-	//¿¹¿Ü »óÈ² Ãâ·Â
+	//ì˜ˆì™¸ ìƒí™© ì¶œë ¥
 	public static void showError(String message){
 		System.out.println(message);		
 	}	

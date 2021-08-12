@@ -6,13 +6,31 @@ import rent.model.CarDAO;
 import rent.view.RunningEndView;
 
 public class CarController {
-	//¸ğµç ÇÁ·ÎÁ§Æ® °Ë»ö ·ÎÁ÷
+	//ëª¨ë“  í”„ë¡œì íŠ¸ ê²€ìƒ‰ ë¡œì§
 	public static void getAllCar(){
 		try{
 			RunningEndView.getAllCar(CarDAO.getAllCar());
 		}catch(SQLException s){
 			s.printStackTrace();
-			RunningEndView.showError("¸ğµç ÇÁ·ÎÁ§Æ® °Ë»ö½Ã ¿¡·¯ ¹ß»ı");
+			RunningEndView.showError("ëª¨ë“  í”„ë¡œì íŠ¸ ê²€ìƒ‰ì‹œ ì—ëŸ¬ ë°œìƒ");
+		}
+	}
+
+	public static void getCarModelList() {
+		try {
+			RunningEndView.getAllCar(CarDAO.getCarModelList());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			RunningEndView.showError("ê²€ìƒ‰í•˜ì‹  ëª¨ë¸ì´ ì—†ìŠµë‹ˆë‹¤.");
+		}
+	}
+
+	public static void getCarTypeList() {
+		try {
+			RunningEndView.getAllCar(CarDAO.getCarTypeList());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			RunningEndView.showError("ê²€ìƒ‰í•˜ì‹  ì°¨ì¢…ì´ ì—†ìŠµë‹ˆë‹¤.");
 		}
 	}
 }
