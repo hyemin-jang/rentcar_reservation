@@ -42,12 +42,12 @@ public class RunningEndView {
 				System.out.println("---------------------------------------------------------------------------------------------");
 				System.out.println("| no. |        대여 날짜                  |        반납 날짜               |  고객No. |  차량No. |      실반납 날짜               |");
 				System.out.println("---------------------------------------------------------------------------------------------");
-				for(int index = 0; index < length; index++){			
+				for(int index = 0; index < length; index++){
 					System.out.println(list.get(index));
 				}
 				logger.info("예약 내역 조회");
 			}else {
-				System.out.println("해당 내역이 없습니다.");
+				System.out.println("예약 내역이 없습니다.");
 				logger.info("예약 내역이 없습니다.");
 			}
 		}else {
