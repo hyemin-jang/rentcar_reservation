@@ -170,7 +170,7 @@ public class Controller {
 				getCarModelList(carModel);
 
 			} else if (choice == 3) {
-				System.out.println("검색하실 차종을 입력해주세요. ex) 경차, SUV, ...");
+				System.out.println("검색하실 차종을 입력해주세요 [경차/준중형/중형/SUV].");
 				String carType = sc.next();
 				getCarTypeList(carType);
 
@@ -196,11 +196,13 @@ public class Controller {
 				
 			} else if (choice == 7) {
 				System.out.println("예약번호를 입력해주세요");
+				
 				int rentId = 0;
 				try {
 					rentId = Integer.parseInt(sc.next());
 				} catch (NumberFormatException e) {
-					System.out.println("숫자를 입력하지 않아 기본값 0으로 저장됩니다.");
+					System.out.println("숫자로 입력해주세요");
+					
 				}
 				returnRent(rentId);
 
@@ -228,9 +230,10 @@ public class Controller {
 			} else if (choice == 10) {
 				int carId = 0;
 				try {
+					System.out.println("삭제할 차량 번호를 입력하세요.");
 					carId = Integer.parseInt(sc.next());
 				} catch (NumberFormatException e) {
-					System.out.println("숫자로 입력해주세요.");
+					System.out.println("숫자를 입력하지 않아 조회할 수 없습니다.");
 				}
 				deleteCar(carId);
 			} else if (choice == 11) {

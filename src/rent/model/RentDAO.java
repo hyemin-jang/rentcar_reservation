@@ -41,6 +41,7 @@ public class RentDAO {
 		return rentList;
 	}
 
+	// 차량 대여
 	public static boolean addRentList(RentDTO rent) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
