@@ -5,11 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import rent.model.dto.CarDTO;
 import rent.model.util.DBUtil;
 
 public class CarDAO {
+	private static Properties sql = DBUtil.getSql();
 
 	// 모든 차량 검색
 	public static ArrayList<CarDTO> getAllCar() throws SQLException{
@@ -21,7 +23,7 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from car order by car_id");
+			pstmt = con.prepareStatement(sql.getProperty("getAllCar"));
 			rset = pstmt.executeQuery();
 
 			carList = new ArrayList<CarDTO>();
@@ -38,7 +40,7 @@ public class CarDAO {
 	}
 
 	// 모델명으로 검색
-	public static ArrayList<CarDTO> getCarModelList() throws SQLException {
+	public static ArrayList<CarDTO> getCarModelList(String carModel) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -46,7 +48,8 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where model='스파크' order by car_id");
+			pstmt = con.prepareStatement(sql.getProperty("getCarModelList"));
+			pstmt.setString(1, carModel);
 			rset = pstmt.executeQuery();
 
 			carList = new ArrayList<CarDTO>();
@@ -63,7 +66,7 @@ public class CarDAO {
 	}
 
 	// 차종으로 검색
-	public static ArrayList<CarDTO> getCarTypeList() throws SQLException {
+	public static ArrayList<CarDTO> getCarTypeList(String carType) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -71,7 +74,8 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where cartype='경차' order by car_id");
+			pstmt = con.prepareStatement(sql.getProperty("getCarTypeList"));
+			pstmt.setString(1, carType);
 			rset = pstmt.executeQuery();
 
 			carList = new ArrayList<CarDTO>();
@@ -87,7 +91,7 @@ public class CarDAO {
 		return carList;
 	}
 
-	public static ArrayList<CarDTO> getCarBrandList() throws SQLException {
+	public static ArrayList<CarDTO> getCarBrandList(String carBrand) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -95,8 +99,8 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where brand='현대' order by car_id");
-
+			pstmt = con.prepareStatement(sql.getProperty("getCarBrandList"));
+			pstmt.setString(1, carBrand);
 			rset = pstmt.executeQuery();
 
 			carList = new ArrayList<CarDTO>();
@@ -121,7 +125,7 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where is_rent='0' order by car_id");
+			pstmt = con.prepareStatement(sql.getProperty("getCarisRentList"));
 			rset = pstmt.executeQuery();
 
 			carList = new ArrayList<CarDTO>();
@@ -143,7 +147,7 @@ public class CarDAO {
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("insert into car values (car_idx.nextval,?,?,?,?,0)");
+			pstmt = con.prepareStatement(sql.getProperty("addCar"));
 			pstmt.setString(1, car.getModel());
 			pstmt.setString(2, car.getBrand());
 			pstmt.setString(3, car.getCarType());
@@ -167,7 +171,7 @@ public class CarDAO {
 		try {
 			con = DBUtil.getConnection();
 
-			pstmt = con.prepareStatement("update car set is_rent=? where car_id=?");
+			pstmt = con.prepareStatement(sql.getProperty("updateCarIsRent"));
 			pstmt.setString(1, isRent);
 			pstmt.setInt(2, carId);
 
@@ -190,7 +194,7 @@ public class CarDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from car where car_id=? order by car_id");
+			pstmt = con.prepareStatement(sql.getProperty("getCar"));
 			pstmt.setInt(1, id);
 			rset = pstmt.executeQuery();
 			
@@ -213,7 +217,7 @@ public class CarDAO {
 		PreparedStatement pstmt = null;
 		try{
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("delete from car where car_id=?");
+			pstmt = con.prepareStatement(sql.getProperty("deleteCar"));
 			pstmt.setInt(1, car.getCarId());				
 			
 			int result = pstmt.executeUpdate();
