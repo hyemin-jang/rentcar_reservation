@@ -1,7 +1,6 @@
 package rent.controller;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -188,8 +187,8 @@ public class Controller {
 				System.out.println("고객번호를 입력하세요.");
 				int customerId = Integer.parseInt(sc.next());
 				System.out.println("차량번호를 입력하세요.");
-				int carType = Integer.parseInt(sc.next());
-				addRentList(new RentDTO(endDay, customerId, carType));
+				int carId = Integer.parseInt(sc.next());
+				addRentList(new RentDTO(endDay, customerId, carId));
 
 			} else if (choice == 7) {
 				System.out.println("예약번호를 입력해주세요");
@@ -233,7 +232,6 @@ public class Controller {
 
 		}
 		sc.close();
-
 	}
 
 }
