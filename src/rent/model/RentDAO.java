@@ -20,7 +20,7 @@ public class RentDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from rent");
+			pstmt = con.prepareStatement("select * from rent order by reservation_id");
 			rset = pstmt.executeQuery();
 
 			rentList = new ArrayList<RentDTO>();
@@ -34,5 +34,29 @@ public class RentDAO {
 			DBUtil.close(con, pstmt, rset);
 		}
 		return rentList;
+	}
+
+	public static boolean addRentList(RentDTO rent) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("insert into rent values(rent_idx.NEXTVAL, SYSDATE, ?, ?, ?, TO_DATE('2021-08-20'))");
+			pstmt.setString(1, rent.getEndDay());
+			pstmt.setInt(2, rent.getCustomerId());
+			pstmt.setInt(3, rent.getCarId());
+			
+			int result = pstmt.executeUpdate();
+			
+			CarDAO.updateCarIsRent(rent.getCarId(), 1);
+			
+			if (result == 1) {
+				return true;
+			}
+		} finally {
+			DBUtil.close(con, pstmt);
+		}
+		return false;
 	}
 }
