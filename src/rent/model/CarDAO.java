@@ -7,12 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import rent.model.dto.CarDTO;
-import rent.model.dto.RentDTO;
 import rent.model.util.DBUtil;
 
 public class CarDAO {
 
-	// 모든 차량 조회 
+	// 모든 차량 검색
 	public static ArrayList<CarDTO> getAllCar() throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -36,53 +35,54 @@ public class CarDAO {
 		}
 		return carList;
 	}
-	
-	
-	// 관리자 - 차량 추가
-	public static boolean addCar(CarDTO car) throws SQLException{
+
+	// 모델명으로 검색
+	public static ArrayList<CarDTO> getCarModelList() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		try{
+		ResultSet rset = null;
+		ArrayList<CarDTO> carList = null;
+
+		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("insert into car values (?,?,?,?,?,?)");
-			pstmt.setInt(1, car.getCarId());
-			pstmt.setString(2, car.getModel());
-			pstmt.setString(3, car.getBrand());
-			pstmt.setString(4, car.getCarType());
-			pstmt.setInt(5, car.getPrice());
-			pstmt.setString(6, car.getIsRent());
+			pstmt = con.prepareStatement("SELECT * FROM car where model='스파크'");
+			rset = pstmt.executeQuery();
 			
-			int result = pstmt.executeUpdate();
-		
-			if(result == 1){
-				return true;
+			carList = new ArrayList<CarDTO>();
+			while (rset.next()) {
+				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6)));
 			}
-		}finally{
-			DBUtil.close(con, pstmt);
+		} catch(SQLException s){
+			s.printStackTrace();
+			throw s;
+		}finally {
+			DBUtil.close(con, pstmt, rset);
 		}
-		return false;
-	}	
+		return carList;
+	}
 	
-//	// 관리자 - 차량 삭제
-//	public static boolean deleteCar(int id) throws SQLException{
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		try{
-//			con = DBUtil.getConnection();
-//			pstmt = con.prepareStatement("delete from car where car_id=?");
-//			pstmt.setInt(1, car.getCarId());				
-//			
-//			int result = pstmt.executeUpdate();
-//		
-//			if(result == 1){
-//				return true;
-//			}
-//		}finally{
-//			DBUtil.close(con, pstmt);
-//		}
-//		return false;
-//	}	
-	
-	
-	
+	// 차종으로 검색
+	public static ArrayList<CarDTO> getCarTypeList() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<CarDTO> carList = null;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("SELECT * FROM car where cartype='경차'");
+			rset = pstmt.executeQuery();
+			
+			carList = new ArrayList<CarDTO>();
+			while (rset.next()) {
+				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6)));
+			}
+		} catch(SQLException s){
+			s.printStackTrace();
+			throw s;
+		}finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return carList;
+	}
 }
