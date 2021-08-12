@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
+import rent.model.dto.CarDTO;
 import rent.model.dto.RentDTO;
 import rent.model.util.DBUtil;
 
@@ -42,21 +45,44 @@ public class RentDAO {
 	public static boolean addRentList(RentDTO rent) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rset = null;
+		Date now = new Date();
+		CarDTO carInfo = new CarDTO();
 
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql.getProperty("addRentList"));
+			pstmt2 = con.prepareStatement(sql.getProperty("getPrice"));
 			pstmt.setString(1, rent.getEndDay());
 			pstmt.setInt(2, rent.getCustomerId());
 			pstmt.setInt(3, rent.getCarId());
+			pstmt2.setInt(1, rent.getCarId());
 			
+			rset = pstmt2.executeQuery();
 			int result = pstmt.executeUpdate();
 			
+			String date1 = rent.getEndDay();
+			
+			Date format1 = new SimpleDateFormat("yyyy-MM-dd").parse(date1);
+			Date format2 = now;
+			
+			long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
+			long diffDays = diffSec / (24*60*60); //일자수 차이
+			
+			if(rset.next()){
+				System.out.println("결제 예정 금액은 "+rset.getInt(1)*diffDays+"원 입니다. 선결제 부탁드립니다.");
+			}
+			
+			System.out.println(diffDays);
+
 			CarDAO.updateCarIsRent(rent.getCarId(), "1");
 			
 			if (result == 1) {
 				return true;
 			}
+		} catch (ParseException e) {
+			e.printStackTrace();
 		} finally {
 			DBUtil.close(con, pstmt);
 		}
