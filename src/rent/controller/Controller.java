@@ -183,14 +183,17 @@ public class Controller {
 				getCarisRentList();
 
 			} else if (choice == 6) {
+				String endDay = null;
+				int customerId = 0;
+				int carId = 0;
 				System.out.println("반납할 날짜를 입력하세요. (yyyy-mm-dd 형태로 입력)");
-				String endDay = sc.next();
+				endDay = sc.next();
 				System.out.println("고객번호를 입력하세요.");
-				int customerId = Integer.parseInt(sc.next());
+				customerId = Integer.parseInt(sc.next());
 				System.out.println("차량번호를 입력하세요.");
-				int carId = Integer.parseInt(sc.next());
+				carId = Integer.parseInt(sc.next());
 				addRentList(new RentDTO(endDay, customerId, carId));
-
+				
 			} else if (choice == 7) {
 				System.out.println("예약번호를 입력해주세요");
 				int rentId = 0;
