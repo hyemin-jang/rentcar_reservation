@@ -14,7 +14,7 @@ public class CarDAO {
 	private static Properties sql = DBUtil.getSql();
 
 	// 모든 차량 검색
-	public static ArrayList<CarDTO> getAllCar() throws SQLException{
+	public static ArrayList<CarDTO> getAllCar() throws SQLException {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -140,32 +140,32 @@ public class CarDAO {
 		}
 		return carList;
 	}
-	
+
 	// 차량 추가
-	public static boolean addCar(CarDTO car) throws SQLException{
+	public static boolean addCar(CarDTO car) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		try{
+		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql.getProperty("addCar"));
 			pstmt.setString(1, car.getModel());
 			pstmt.setString(2, car.getBrand());
 			pstmt.setString(3, car.getCarType());
 			pstmt.setInt(4, car.getPrice());
-			
+
 			int result = pstmt.executeUpdate();
-		
-			if(result == 1){
+
+			if (result == 1) {
 				return true;
 			}
-		}finally{
+		} finally {
 			DBUtil.close(con, pstmt);
 		}
 		return false;
-	}	
-	
+	}
+
 	// 차량 대여 가능 상태 변경
-	public static boolean updateCarIsRent(int carId, String isRent) throws SQLException{
+	public static boolean updateCarIsRent(int carId, String isRent) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -183,52 +183,52 @@ public class CarDAO {
 			DBUtil.close(con, pstmt);
 		}
 		return false;
-	}	
-	
+	}
+
 	// 차량 등록번호로 차량 검색
-	public static CarDTO getCar(int id) throws SQLException{
+	public static CarDTO getCar(int id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		CarDTO car = null;
-		
+
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql.getProperty("getCar"));
 			pstmt.setInt(1, id);
 			rset = pstmt.executeQuery();
-			
+
 			while (rset.next()) {
 				car = new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
 			}
-			
-		} catch(SQLException s){
+
+		} catch (SQLException s) {
 			s.printStackTrace();
 			throw s;
-		}finally {
+		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
 		return car;
 	}
-	
+
 	// 차량 삭제
-	public static boolean deleteCar(CarDTO car) throws SQLException{
+	public static boolean deleteCar(CarDTO car) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		try{
+		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql.getProperty("deleteCar"));
-			pstmt.setInt(1, car.getCarId());				
-			
+			pstmt.setInt(1, car.getCarId());
+
 			int result = pstmt.executeUpdate();
-		
-			if(result == 1){
+
+			if (result == 1) {
 				return true;
 			}
-		}finally{
+		} finally {
 			DBUtil.close(con, pstmt);
 		}
 		return false;
-	}	
+	}
 
 }

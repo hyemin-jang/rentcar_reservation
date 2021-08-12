@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import rent.model.CarDAO;
+import rent.model.CustomerDAO;
 import rent.model.RentDAO;
 import rent.model.dto.CarDTO;
+import rent.model.dto.CustomerDTO;
 import rent.model.dto.RentDTO;
 import rent.view.RunningEndView;
 
@@ -98,6 +100,21 @@ public class Controller {
 			RunningEndView.showError("에러 발생");
 		}
 	}
+	
+	// 고객 추가
+	private static void addCustomer(CustomerDTO customer) {
+		try {
+			
+			if (CustomerDAO.addCustomer(customer) == true) {
+				RunningEndView.showMessage("등록 완료");
+			} else {
+				RunningEndView.showMessage("등록 실패");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			RunningEndView.showError("에러발생");
+		}
+	}
 	// 관리자 - 차량 등록 로직
 	public static boolean addCar(CarDTO car) {
 		boolean result = false;
@@ -146,9 +163,9 @@ public class Controller {
 		Scanner sc = new Scanner(new InputStreamReader(System.in));
 
 		while (true) {
-			System.out.println("\n0.메뉴 종료하기 \t1.모든 차량 조회하기  \t2.모델명으로 검색   \t3.차종으로 검색 "
-					+ "\n4.브랜드로 검색 \t5.대여 가능 차량 조회 \t6.차량 대여하기 \t7. 차량 반납하기 \t8. 예약 조회하기 \n\n[관리자 메뉴]"
-					+ "\n9.차량 추가  \t10.차량 삭제 \t11.모든 대여 내역 조회");
+			System.out.println("\n0.메뉴 종료하기 \t1.모든 차량 조회하기  \t2.모델명으로 검색   \t3.차종으로 검색 \t4.브랜드로 검색"
+					+ "\n\t5.대여 가능 차량 조회 \t6.차량 대여하기 \t7.차량 반납하기 \t8.예약 조회하기 \t9.고객 등록"
+					+ "\n\n[관리자 메뉴]\n10.차량 추가  \t11.차량 삭제 \t12.모든 대여 내역 조회");
 			System.out.println("\n메뉴를 선택해주세요.");
 
 			try {
@@ -211,7 +228,16 @@ public class Controller {
 				String name = sc.next();
 				getRentList(name);
 				
-			} if (choice == 9) {
+			} else if (choice == 9) {
+				System.out.println("이름을 입력하세요.");
+				String name = sc.next();
+				System.out.println("핸드폰 번호를 입력하세요.");
+				String phone = sc.next();
+				System.out.println("면허증 번호를 입력하세요.");
+				String license = sc.next();
+				addCustomer(new CustomerDTO(name, phone, license));
+				
+			} else if (choice == 10) {
 				System.out.println("차량 모델을 입력하세요.");
 				String model = sc.next();
 				System.out.println("차량 브랜드를 입력하세요.");
@@ -227,7 +253,7 @@ public class Controller {
 				}
 				addCar(new CarDTO(model, brand, carType, price));
 
-			} else if (choice == 10) {
+			} else if (choice == 11) {
 				int carId = 0;
 				try {
 					System.out.println("삭제할 차량 번호를 입력하세요.");
@@ -236,7 +262,7 @@ public class Controller {
 					System.out.println("숫자를 입력하지 않아 조회할 수 없습니다.");
 				}
 				deleteCar(carId);
-			} else if (choice == 11) {
+			} else if (choice == 12) {
 				getAllRentList();
 			}
 

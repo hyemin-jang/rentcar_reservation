@@ -13,6 +13,13 @@ public class CustomerDTO {
 	public CustomerDTO() {
 	}
 
+	public CustomerDTO(String name, String phone, String license) {
+		super();
+		this.name = name;
+		this.phone = phone;
+		this.license = license;
+	}
+	
 	public CustomerDTO(int customerId, String name, String phone, String license) {
 		super();
 		this.customerId = customerId;
