@@ -115,6 +115,7 @@ public class Controller {
 			RunningEndView.showError("에러발생");
 		}
 	}
+	
 	// 관리자 - 차량 등록 로직
 	public static boolean addCar(CarDTO car) {
 		boolean result = false;
