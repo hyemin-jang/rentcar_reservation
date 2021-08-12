@@ -1,6 +1,7 @@
 package rent.view;
 
 import rent.controller.CarController;
+import rent.model.dto.CarDTO;
 
 public class RunningStartView {
 	
