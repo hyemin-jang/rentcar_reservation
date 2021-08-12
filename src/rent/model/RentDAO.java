@@ -89,6 +89,34 @@ public class RentDAO {
 		return false;
 	}
 	
+	// 렌트 내역 검색
+	public static ArrayList<RentDTO> getRentList(String name) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<RentDTO> rentList = null;
+
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql.getProperty("getRentList"));
+			pstmt.setString(1, name);
+			rset = pstmt.executeQuery();
+
+			rentList = new ArrayList<RentDTO>();
+			
+			while (rset.next()) {
+				rentList.add(new RentDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getInt(4), rset.getInt(5), rset.getString(6)));
+			}
+		} catch (SQLException s) {
+			s.printStackTrace();
+			throw s;
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return rentList;
+	}
+	
+	// 차랑 반납
 	public static int returnRent(int rentID) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
