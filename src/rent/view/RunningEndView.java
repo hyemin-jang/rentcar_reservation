@@ -29,3 +29,4 @@ public class RunningEndView {
 		System.out.println(message);		
 	}	
 }
+
