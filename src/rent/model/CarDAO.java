@@ -11,7 +11,7 @@ import rent.model.util.DBUtil;
 
 public class CarDAO {
 
-	// ¸ğµç Â÷·® °Ë»ö
+	// ëª¨ë“  ì°¨ëŸ‰ ê²€ìƒ‰
 	public static ArrayList<CarDTO> getAllCar() throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -36,7 +36,7 @@ public class CarDAO {
 		return carList;
 	}
 
-	// ¸ğµ¨¸íÀ¸·Î °Ë»ö
+	// ëª¨ë¸ëª…ìœ¼ë¡œ ê²€ìƒ‰
 	public static ArrayList<CarDTO> getCarModelList() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -45,7 +45,7 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where model='½ºÆÄÅ©'");
+			pstmt = con.prepareStatement("SELECT * FROM car where model='ìŠ¤íŒŒí¬'");
 			rset = pstmt.executeQuery();
 			
 			carList = new ArrayList<CarDTO>();
@@ -61,7 +61,7 @@ public class CarDAO {
 		return carList;
 	}
 	
-	// Â÷Á¾À¸·Î °Ë»ö
+	// ì°¨ì¢…ìœ¼ë¡œ ê²€ìƒ‰
 	public static ArrayList<CarDTO> getCarTypeList() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -70,7 +70,7 @@ public class CarDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where cartype='°æÂ÷'");
+			pstmt = con.prepareStatement("SELECT * FROM car where cartype='ê²½ì°¨'");
 			rset = pstmt.executeQuery();
 			
 			carList = new ArrayList<CarDTO>();
@@ -94,7 +94,7 @@ public class CarDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM car where brand='Çö´ë'");
+			pstmt = con.prepareStatement("SELECT * FROM car where brand='í˜„ëŒ€'");
 			rset = pstmt.executeQuery();
 			
 			carList = new ArrayList<CarDTO>();
