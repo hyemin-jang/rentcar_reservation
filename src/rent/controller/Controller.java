@@ -66,7 +66,6 @@ public class Controller {
 	// 차량 대여
 	public static void addRentList(RentDTO rent) {
 		try {
-			
 			if (RentDAO.addRentList(rent) == true) {
 				RunningEndView.showMessage("예약에 성공했습니다.");				
 			} else {
