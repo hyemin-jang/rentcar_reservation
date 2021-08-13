@@ -4,8 +4,8 @@
 제약사항 : 당일 대여만 가능
 
 # 1. Modeling
+https://www.notion.so/c74dff75a1114fb5afc979ad527fcb96#8fdef0d8a9ff4b228c8e55096fa33ee9
 
-!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e16062b5-a7be-42fe-92ef-648b8d33c159/Untitled.png
 
 # 2. SQL
 
