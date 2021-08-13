@@ -47,39 +47,52 @@ public class RentDAO {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
+		PreparedStatement pstmt4 = null;
 		ResultSet rset1 = null;
 		ResultSet rset2 = null;
+		ResultSet rset3 = null;
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement(sql.getProperty("addRentList"));
-			pstmt2 = con.prepareStatement(sql.getProperty("getPrice"));
-			pstmt3 = con.prepareStatement(sql.getProperty("getRentId"));
-			pstmt.setString(1, rent.getEndDay());
-			pstmt.setInt(2, rent.getCustomerId());
-			pstmt.setInt(3, rent.getCarId());
-			pstmt2.setInt(1, rent.getCarId());
-			
-			rset1 = pstmt2.executeQuery();
-			int result = pstmt.executeUpdate();
-			rset2 = pstmt3.executeQuery();
-			
-			Date format1 = new SimpleDateFormat("yyyy-MM-dd").parse(rent.getEndDay());
-			Date format2 = new Date();
-			
-			long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
-			long diffDays = (diffSec / (24*60*60))+1; //일자수 차이
-			if(rset1.next()){
-				if(rset2.next()) {
-					System.out.println("고객님의 예약 번호는 "+rset2.getInt(1)+"번 입니다.");
+			pstmt4 = con.prepareStatement(sql.getProperty("getCarIsRent"));
+			pstmt4.setInt(1, rent.getCarId());
+			rset3 = pstmt4.executeQuery();
+			if(rset3.next()) {
+				if(rset3.getInt(1) == 0) {
+					pstmt = con.prepareStatement(sql.getProperty("addRentList"));
+					pstmt2 = con.prepareStatement(sql.getProperty("getPrice"));
+					pstmt3 = con.prepareStatement(sql.getProperty("getRentId"));
+					pstmt.setString(1, rent.getEndDay());
+					pstmt.setInt(2, rent.getCustomerId());
+					pstmt.setInt(3, rent.getCarId());
+					pstmt2.setInt(1, rent.getCarId());
+					
+					rset1 = pstmt2.executeQuery();
+					int result = pstmt.executeUpdate();
+					rset2 = pstmt3.executeQuery();
+					
+					
+					Date format1 = new SimpleDateFormat("yyyy-MM-dd").parse(rent.getEndDay());
+					Date format2 = new Date();
+					
+					long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
+					long diffDays = (diffSec / (24*60*60))+1; //일자수 차이
+					if(rset1.next()){
+						if(rset2.next()) {
+							System.out.println("고객님의 예약 번호는 "+rset2.getInt(1)+"번 입니다.");
+						}
+						System.out.println("결제 예정 금액은 "+rset1.getInt(1)*diffDays+"원 입니다. 선결제 부탁드립니다.");
+					}
+					
+					CarDAO.updateCarIsRent(rent.getCarId(), "1");
+					
+					if (result == 1) {
+						return true;
+					}
+				} else {
+					System.out.println("해당 차량은 이미 예약되어 있습니다.");
+					throw new SQLException();
 				}
-				System.out.println("결제 예정 금액은 "+rset1.getInt(1)*diffDays+"원 입니다. 선결제 부탁드립니다.");
-			}
-			
-			CarDAO.updateCarIsRent(rent.getCarId(), "1");
-			
-			if (result == 1) {
-				return true;
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -87,6 +100,7 @@ public class RentDAO {
 			DBUtil.close(con, pstmt, rset1);
 			DBUtil.close(con, pstmt2, rset2);
 			DBUtil.close(con, pstmt3);
+			DBUtil.close(con, pstmt4, rset3);
 		}
 		return false;
 	}
