@@ -4,7 +4,7 @@
 제약사항 : 당일 대여만 가능
 
 # 1. Modeling
-!(https://www.notion.so/c74dff75a1114fb5afc979ad527fcb96#8fdef0d8a9ff4b228c8e55096fa33ee9)
+![image](https://user-images.githubusercontent.com/74531573/129319247-d86c26e5-917b-4bc1-adf8-7958e8e2acc7.png)
 
 
 # 2. SQL
@@ -82,8 +82,9 @@ commit;
 ```
 
 # 3. Class Diagram
+![classDiagram](https://user-images.githubusercontent.com/74531573/129318723-4b8a60e6-7027-451d-bf59-8857bba222b3.gif)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c7bbdaac-c940-4f6a-a53c-1988b595a044/classDiagram.gif]
+
 
 # 4. Function
 
