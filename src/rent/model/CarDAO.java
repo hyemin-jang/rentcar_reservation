@@ -28,7 +28,8 @@ public class CarDAO {
 
 			carList = new ArrayList<CarDTO>();
 			while (rset.next()) {
-				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6)));
+				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
+						rset.getInt(5), rset.getString(6)));
 			}
 		} catch (SQLException s) {
 			s.printStackTrace();
@@ -54,7 +55,8 @@ public class CarDAO {
 
 			carList = new ArrayList<CarDTO>();
 			while (rset.next()) {
-				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6)));
+				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
+						rset.getInt(5), rset.getString(6)));
 			}
 		} catch (SQLException s) {
 			s.printStackTrace();
@@ -80,7 +82,8 @@ public class CarDAO {
 
 			carList = new ArrayList<CarDTO>();
 			while (rset.next()) {
-				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6)));
+				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
+						rset.getInt(5), rset.getString(6)));
 			}
 		} catch (SQLException s) {
 			throw s;
@@ -89,7 +92,7 @@ public class CarDAO {
 		}
 		return carList;
 	}
-	
+
 	// 브랜드로 검색
 	public static ArrayList<CarDTO> getCarBrandList(String carBrand) throws SQLException {
 		Connection con = null;
@@ -105,7 +108,8 @@ public class CarDAO {
 
 			carList = new ArrayList<CarDTO>();
 			while (rset.next()) {
-				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6)));
+				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
+						rset.getInt(5), rset.getString(6)));
 			}
 		} catch (SQLException s) {
 			throw s;
@@ -130,7 +134,8 @@ public class CarDAO {
 
 			carList = new ArrayList<CarDTO>();
 			while (rset.next()) {
-				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6)));
+				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
+						rset.getInt(5), rset.getString(6)));
 			}
 		} catch (SQLException s) {
 			s.printStackTrace();
@@ -148,25 +153,25 @@ public class CarDAO {
 		PreparedStatement pstmt2 = null;
 		ResultSet rset = null;
 		int carId = 0;
-		
+
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql.getProperty("addCar"));
 			pstmt.setString(1, car.getModel());
 			pstmt.setString(2, car.getBrand());
 			pstmt.setString(3, car.getCarType());
-			pstmt.setInt(4, car.getPrice());			
+			pstmt.setInt(4, car.getPrice());
 
 			int result = pstmt.executeUpdate();
-			
-			pstmt2 = con.prepareStatement(sql.getProperty("getCarId"));	
+
+			pstmt2 = con.prepareStatement(sql.getProperty("getCarId"));
 			rset = pstmt2.executeQuery();
-										
+
 			if (result == 1) {
 				if (rset.next()) {
 					carId = rset.getInt(1);
-				}				
-			}			
+				}
+			}
 		} finally {
 			DBUtil.close(con, pstmt);
 			DBUtil.close(con, pstmt2, rset);
@@ -209,7 +214,8 @@ public class CarDAO {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				car = new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5), rset.getString(6));
+				car = new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
+						rset.getInt(5), rset.getString(6));
 			}
 
 		} catch (SQLException s) {

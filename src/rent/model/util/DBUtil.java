@@ -12,25 +12,25 @@ import java.util.Properties;
 public class DBUtil {
 	private static Properties dbInfo = new Properties();
 	private static Properties sql = new Properties();
-	
+
 	static {
 		try {
 			dbInfo.load(new FileInputStream("db.properties"));
 			sql.load(new FileInputStream("sql.properties"));
-		} catch (IOException e) {			
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static Properties getSql() {
 		return sql;
 	}
-	
-	
-	public static Connection getConnection() throws SQLException {  
-		return DriverManager.getConnection(dbInfo.getProperty("jdbc.url"), dbInfo.getProperty("jdbc.id"), dbInfo.getProperty("jdbc.pw"));	
+
+	public static Connection getConnection() throws SQLException {
+		return DriverManager.getConnection(dbInfo.getProperty("jdbc.url"), dbInfo.getProperty("jdbc.id"),
+				dbInfo.getProperty("jdbc.pw"));
 	}
-	
+
 	public static void close(Statement stmt) {
 		try {
 			if (stmt != null) {
@@ -41,7 +41,7 @@ public class DBUtil {
 			s.printStackTrace();
 		}
 	}
-	
+
 	public static void close(Connection con, Statement stmt) {
 		try {
 			if (stmt != null) {

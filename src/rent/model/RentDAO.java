@@ -30,9 +30,10 @@ public class RentDAO {
 			pstmt = con.prepareStatement(sql.getProperty("getAllRentList"));
 			rset = pstmt.executeQuery();
 			rentList = new ArrayList<RentDTO>();
-			
+
 			while (rset.next()) {
-				rentList.add(new RentDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getInt(4), rset.getInt(5), rset.getString(6)));
+				rentList.add(new RentDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getInt(4),
+						rset.getInt(5), rset.getString(6)));
 			}
 		} catch (SQLException s) {
 			s.printStackTrace();
@@ -44,67 +45,69 @@ public class RentDAO {
 	}
 
 	// 차량 대여
-	public static boolean addRentList(RentDTO rent) throws SQLException {
+	public static int addRentList(RentDTO rent) throws SQLException {
 		Connection con = null;
-		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
-		PreparedStatement pstmt3 = null;
-		PreparedStatement pstmt4 = null;
-		ResultSet rset1 = null;
-		ResultSet rset2 = null;
-		ResultSet rset3 = null;
+		PreparedStatement pstmtAddRent = null;
+		PreparedStatement pstmtGetPrice = null;
+		PreparedStatement pstmtGetRentId = null;
+		PreparedStatement pstmtRentStatus = null;
+		ResultSet rsetPrice = null;
+		ResultSet rsetRentId = null;
+		ResultSet rsetRentStatus = null;
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt4 = con.prepareStatement(sql.getProperty("getCarIsRent"));
-			pstmt4.setInt(1, rent.getCarId());
-			rset3 = pstmt4.executeQuery();
-			if(rset3.next()) {
-				if(rset3.getInt(1) == 0) {
-					pstmt = con.prepareStatement(sql.getProperty("addRentList"));
-					pstmt2 = con.prepareStatement(sql.getProperty("getPrice"));
-					pstmt3 = con.prepareStatement(sql.getProperty("getRentId"));
-					pstmt.setString(1, rent.getEndDay());
-					pstmt.setInt(2, rent.getCustomerId());
-					pstmt.setInt(3, rent.getCarId());
-					pstmt2.setInt(1, rent.getCarId());
-					
-					rset1 = pstmt2.executeQuery();
-					int result = pstmt.executeUpdate();
-					rset2 = pstmt3.executeQuery();
+			pstmtRentStatus = con.prepareStatement(sql.getProperty("getCarIsRent"));
+			pstmtRentStatus.setInt(1, rent.getCarId());
+			rsetRentStatus = pstmtRentStatus.executeQuery();
+			if (rsetRentStatus.next()) {
+				if (rsetRentStatus.getInt(1) == 0) {
+					pstmtAddRent = con.prepareStatement(sql.getProperty("addRentList"));
+					pstmtGetPrice = con.prepareStatement(sql.getProperty("getPrice"));
+					pstmtGetRentId = con.prepareStatement(sql.getProperty("getRentId"));
+					pstmtAddRent.setString(1, rent.getEndDay());
+					pstmtAddRent.setInt(2, rent.getCustomerId());
+					pstmtAddRent.setInt(3, rent.getCarId());
+					pstmtGetPrice.setInt(1, rent.getCarId());
+
+					rsetPrice = pstmtGetPrice.executeQuery();
+					int result = pstmtAddRent.executeUpdate();
+					rsetRentId = pstmtGetRentId.executeQuery();
 
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					Date format1 = dateFormat.parse(rent.getEndDay());
 					Date format2 = dateFormat.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-					
-					long diffSec = ((format1.getTime()) - format2.getTime()) / 1000 + (24*60*60); //초 차이
-					long diffDays = (diffSec / (24*60*60)); //일자수 차이
-					
-					if(rset1.next()){
-						if(rset2.next()) {
-							System.out.println("고객님의 예약 번호는 "+rset2.getInt(1)+"번 입니다.");
+
+					long diffSec = ((format1.getTime()) - format2.getTime()) / 1000 + (24 * 60 * 60); // 초 차이
+					long diffDays = (diffSec / (24 * 60 * 60)); // 일자수 차이
+
+					if (rsetPrice.next()) {
+						if (rsetRentId.next()) {
+							System.out.println("고객님의 예약 번호는 " + rsetRentId.getInt(1) + "번 입니다.");
 						}
-						System.out.println("결제 예정 금액은 " + rset1.getInt(1)*diffDays + "원 입니다. 선결제 부탁드립니다.");
+						System.out.println("결제 예정 금액은 " + rsetPrice.getInt(1) * diffDays + "원 입니다. 선결제 부탁드립니다.");
 					}
-					
+
 					CarDAO.updateCarIsRent(rent.getCarId(), "1");
-					
+
 					if (result == 1) {
-						return true;
+						return 1; // 정상 대여
 					}
 				} else {
-					return false;
+					return -1; // 이미 대여중
 				}
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtil.close(con, pstmt, rset1);
-			DBUtil.close(con, pstmt2, rset2);
-			DBUtil.close(con, pstmt3);
-			DBUtil.close(con, pstmt4, rset3);
+			DBUtil.close(con, pstmtAddRent, rsetPrice);
+			DBUtil.close(con, pstmtGetPrice, rsetRentId);
+			DBUtil.close(con, pstmtGetRentId);
+			DBUtil.close(con, pstmtRentStatus, rsetRentStatus);
 		}
-		return false;
+		return 0; // 에러
 	}
 
 	// 렌트 내역 검색
@@ -121,9 +124,10 @@ public class RentDAO {
 			rset = pstmt.executeQuery();
 
 			rentList = new ArrayList<RentDTO>();
-			
+
 			while (rset.next()) {
-				rentList.add(new RentDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getInt(4), rset.getInt(5), rset.getString(6)));
+				rentList.add(new RentDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getInt(4),
+						rset.getInt(5), rset.getString(6)));
 			}
 		} catch (SQLException s) {
 			s.printStackTrace();
@@ -133,7 +137,7 @@ public class RentDAO {
 		}
 		return rentList;
 	}
-	
+
 	// 차랑 반납
 	public static int returnRent(int rentID) throws SQLException {
 		Connection con = null;
@@ -141,7 +145,7 @@ public class RentDAO {
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
 		ResultSet rset = null;
-		
+
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql.getProperty("returnRentGetId"));
@@ -155,16 +159,16 @@ public class RentDAO {
 					pstmt2 = con.prepareStatement(sql.getProperty("updateIsRentZero"));
 					pstmt2.setInt(1, carId);
 					int result = pstmt2.executeUpdate();
-					
+
 					// 정상 반납
 					if (result == 1) {
 						pstmt3 = con.prepareStatement(sql.getProperty("updateReturnday"));
 						pstmt3.setInt(1, rentID);
 						pstmt3.executeUpdate();
-						
+
 						return 1;
 					}
-				}else {
+				} else {
 					// 이미 반납된 차량
 					return -1;
 				}

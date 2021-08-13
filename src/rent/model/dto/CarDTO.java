@@ -15,7 +15,8 @@ public class CarDTO {
 	private String isRent;
 
 	public CarDTO() {
-	}	
+	}
+
 	public CarDTO(int carId, String model, String brand, String carType, int price, String isRent) {
 		super();
 		this.carId = carId;
@@ -25,6 +26,7 @@ public class CarDTO {
 		this.price = price;
 		this.isRent = isRent;
 	}
+
 	public CarDTO(String model, String brand, String carType, int price) {
 		super();
 		this.model = model;
@@ -85,16 +87,16 @@ public class CarDTO {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("  " + carId + "  ");
-			builder.append("\t\t\t\t" + model);
+		builder.append("\t\t" + model);
 		if (model.length() >= 5) {
-			builder.append("\t\t\t" + brand);		
-		}else {	
-			builder.append("\t\t\t\t" + brand);		
+			builder.append("\t\t" + brand);
+		} else {
+			builder.append("\t\t\t" + brand);
 		}
 		builder.append("\t\t" + carType);
 		builder.append("\t\t" + price);
 		if (Integer.parseInt(isRent) == 0) {
-			builder.append("\t대여가능");
+			builder.append("\t\t대여가능");
 		} else {
 			builder.append("\t대여중");
 		}
