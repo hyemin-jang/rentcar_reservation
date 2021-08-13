@@ -93,8 +93,7 @@ public class RentDAO {
 						return true;
 					}
 				} else {
-					System.out.println("해당 차량은 이미 예약되어 있습니다.");
-					throw new SQLException();
+					return false;
 				}
 			}
 		} catch (ParseException e) {

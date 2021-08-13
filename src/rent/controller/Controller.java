@@ -17,8 +17,8 @@ public class Controller {
 	public static void getAllCar() {
 		try {
 			RunningEndView.getCarList(CarDAO.getAllCar());
-		} catch (SQLException s) {
-			s.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 			RunningEndView.showError("모든 차량 검색시 에러 발생");
 		}
 	}
@@ -66,9 +66,14 @@ public class Controller {
 	// 차량 대여
 	public static void addRentList(RentDTO rent) {
 		try {
-			RentDAO.addRentList(rent);
-			RunningEndView.showMessage("예약에 성공했습니다.");
+			
+			if (RentDAO.addRentList(rent) == true) {
+				RunningEndView.showMessage("예약에 성공했습니다.");				
+			} else {
+				RunningEndView.showMessage("해당 차량은 이미 예약되어 있거나 존재하지 않는 차량 번호입니다.");				
+			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			RunningEndView.showError("차량 예약 실패하였습니다.");
 		}
 	}
@@ -96,6 +101,7 @@ public class Controller {
 		try {
 			RunningEndView.getRentList(RentDAO.getRentList(name));
 		} catch (SQLException e) {
+			e.printStackTrace();
 			RunningEndView.showError("에러 발생");
 		}
 	}
@@ -135,8 +141,10 @@ public class Controller {
 			CarDAO.deleteCar(car);
 			RunningEndView.showMessage("차량을 삭제했습니다.");
 		} catch (SQLException e) {
+			e.printStackTrace();
 			RunningEndView.showError("차량 삭제에 실패하였습니다.");
 		} catch (NullPointerException e) {
+			e.printStackTrace();
 			RunningEndView.showError("해당 차량이 존재하지 않습니다.");
 		}
 	}
@@ -145,8 +153,8 @@ public class Controller {
 	public static void getAllRentList() {
 		try {
 			RunningEndView.getRentList(RentDAO.getAllRentList());
-		} catch (SQLException s) {
-			s.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 			RunningEndView.showError("에러");
 		}
 	}
@@ -260,6 +268,7 @@ public class Controller {
 					System.out.println("삭제할 차량 번호를 입력하세요.");
 					carId = Integer.parseInt(sc.next());
 				} catch (NumberFormatException e) {
+					e.printStackTrace();
 					System.out.println("숫자를 입력하지 않아 조회할 수 없습니다.");
 				}
 				deleteCar(carId);
