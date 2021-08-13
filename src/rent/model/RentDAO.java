@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
@@ -70,18 +72,19 @@ public class RentDAO {
 					rset1 = pstmt2.executeQuery();
 					int result = pstmt.executeUpdate();
 					rset2 = pstmt3.executeQuery();
+
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					Date format1 = dateFormat.parse(rent.getEndDay());
+					Date format2 = dateFormat.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 					
+					long diffSec = ((format1.getTime()) - format2.getTime()) / 1000 + (24*60*60); //초 차이
+					long diffDays = (diffSec / (24*60*60)); //일자수 차이
 					
-					Date format1 = new SimpleDateFormat("yyyy-MM-dd").parse(rent.getEndDay());
-					Date format2 = new Date();
-					
-					long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
-					long diffDays = (diffSec / (24*60*60))+1; //일자수 차이
 					if(rset1.next()){
 						if(rset2.next()) {
 							System.out.println("고객님의 예약 번호는 "+rset2.getInt(1)+"번 입니다.");
 						}
-						System.out.println("결제 예정 금액은 "+rset1.getInt(1)*diffDays+"원 입니다. 선결제 부탁드립니다.");
+						System.out.println("결제 예정 금액은 " + rset1.getInt(1)*diffDays + "원 입니다. 선결제 부탁드립니다.");
 					}
 					
 					CarDAO.updateCarIsRent(rent.getCarId(), "1");
@@ -104,7 +107,7 @@ public class RentDAO {
 		}
 		return false;
 	}
-	
+
 	// 렌트 내역 검색
 	public static ArrayList<RentDTO> getRentList(String name) throws SQLException {
 		Connection con = null;
