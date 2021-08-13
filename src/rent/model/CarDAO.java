@@ -90,7 +90,8 @@ public class CarDAO {
 		}
 		return carList;
 	}
-
+	
+	// 브랜드로 검색
 	public static ArrayList<CarDTO> getCarBrandList(String carBrand) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -117,6 +118,7 @@ public class CarDAO {
 		return carList;
 	}
 
+	// 대여 가능 차량 조회하기
 	public static ArrayList<CarDTO> getCarisRentList() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -142,26 +144,35 @@ public class CarDAO {
 	}
 
 	// 차량 추가
-	public static boolean addCar(CarDTO car) throws SQLException {
+	public static int addCar(CarDTO car) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rset = null;
+		int carId = 0;
+		
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql.getProperty("addCar"));
 			pstmt.setString(1, car.getModel());
 			pstmt.setString(2, car.getBrand());
 			pstmt.setString(3, car.getCarType());
-			pstmt.setInt(4, car.getPrice());
+			pstmt.setInt(4, car.getPrice());			
 
 			int result = pstmt.executeUpdate();
-
+			
+			pstmt2 = con.prepareStatement(sql.getProperty("getCarId"));	
+			rset = pstmt2.executeQuery();
+										
 			if (result == 1) {
-				return true;
-			}
+				if (rset.next()) {
+					carId = rset.getInt(1);
+				}				
+			}			
 		} finally {
 			DBUtil.close(con, pstmt);
 		}
-		return false;
+		return carId;
 	}
 
 	// 차량 대여 가능 상태 변경
