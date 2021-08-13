@@ -70,7 +70,7 @@ public class Controller {
 			if (status == 1) {
 				RunningEndView.showMessage("예약에 성공했습니다.");
 			} else if (status == -1) {
-				RunningEndView.showMessage("이미 예약중인 차량입니다.");
+				RunningEndView.showMessage("이미 예약중인 차량입니다.");=====
 			} else {
 				RunningEndView.showMessage("고객 번호 또는 차량 번호를 다시 확인해주세요.");
 			}
@@ -230,7 +230,6 @@ public class Controller {
 					rentId = Integer.parseInt(sc.next());
 				} catch (NumberFormatException e) {
 					System.out.println("숫자로 입력해주세요");
-
 				}
 				returnRent(rentId);
 
