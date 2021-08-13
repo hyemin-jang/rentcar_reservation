@@ -19,7 +19,7 @@ public class Controller {
 			RunningEndView.getCarList(CarDAO.getAllCar());
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RunningEndView.showError("모든 차량 검색시 에러 발생");
+			RunningEndView.showError("차량 조회에 실패하였습니다.");
 		}
 	}
 
@@ -59,21 +59,24 @@ public class Controller {
 			RunningEndView.getCarList(CarDAO.getCarisRentList());
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RunningEndView.showError("렌트 가능하신 차량이 없습니다.");
+			RunningEndView.showError("대여 가능한 차량이 없습니다.");
 		}
 	}
 
 	// 차량 대여
 	public static void addRentList(RentDTO rent) {
 		try {
-			if (RentDAO.addRentList(rent) == true) {
-				RunningEndView.showMessage("예약에 성공했습니다.");				
+			int status = RentDAO.addRentList(rent);
+			if (status == 1) {
+				RunningEndView.showMessage("예약에 성공했습니다.");
+			} else if (status == -1) {
+				RunningEndView.showMessage("이미 예약중인 차량입니다.");=====
 			} else {
-				RunningEndView.showMessage("해당 차량은 이미 예약되어 있거나 존재하지 않는 차량 번호입니다.");				
+				RunningEndView.showMessage("고객 번호 또는 차량 번호를 다시 확인해주세요.");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RunningEndView.showError("차량 예약 실패하였습니다.");
+			RunningEndView.showError("차량 예약에 실패하였습니다.");
 		}
 	}
 
@@ -94,7 +97,7 @@ public class Controller {
 			RunningEndView.showError("에러 발생");
 		}
 	}
-	
+
 	// 예약 조회
 	private static void getRentList(String name) {
 		try {
@@ -104,11 +107,11 @@ public class Controller {
 			RunningEndView.showError("에러 발생");
 		}
 	}
-	
+
 	// 고객 추가
 	private static void addCustomer(CustomerDTO customer) {
 		try {
-			
+
 			if (CustomerDAO.addCustomer(customer) == true) {
 				RunningEndView.showMessage("등록 완료");
 			} else {
@@ -119,11 +122,11 @@ public class Controller {
 			RunningEndView.showError("에러발생");
 		}
 	}
-	
+
 	// 관리자 - 차량 등록 로직
 	public static void addCar(CarDTO car) {
 		try {
-			int carId = CarDAO.addCar(car);			
+			int carId = CarDAO.addCar(car);
 			RunningEndView.showMessage("차량을 등록했습니다. (차량 등록 번호 : " + carId + ")");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -212,22 +215,21 @@ public class Controller {
 				System.out.println("차량번호를 입력하세요.");
 				carId = Integer.parseInt(sc.next());
 				addRentList(new RentDTO(endDay, customerId, carId));
-				
+
 			} else if (choice == 7) {
 				System.out.println("예약번호를 기억하시나요? y/n");
 				String answer = sc.next();
-				if (answer.equals("n")) {				
+				if (answer.equals("n")) {
 					System.out.println("예약내역을 조회하실 고객 이름을 입력해주세요.");
 					answer = sc.next();
 					getRentList(answer);
-				}	
+				}
 				System.out.println("예약번호를 입력해주세요.");
 				int rentId = 0;
 				try {
 					rentId = Integer.parseInt(sc.next());
 				} catch (NumberFormatException e) {
 					System.out.println("숫자로 입력해주세요");
-					
 				}
 				returnRent(rentId);
 
@@ -235,7 +237,7 @@ public class Controller {
 				System.out.println("이름을 입력해주세요");
 				String name = sc.next();
 				getRentList(name);
-				
+
 			} else if (choice == 9) {
 				System.out.println("이름을 입력하세요.");
 				String name = sc.next();
@@ -244,7 +246,7 @@ public class Controller {
 				System.out.println("면허증 번호를 입력하세요.");
 				String license = sc.next();
 				addCustomer(new CustomerDTO(name, phone, license));
-				
+
 			} else if (choice == 10) {
 				System.out.println("차량 모델을 입력하세요.");
 				String model = sc.next();
@@ -257,6 +259,7 @@ public class Controller {
 				try {
 					price = Integer.parseInt(sc.next());
 				} catch (NumberFormatException e) {
+					e.printStackTrace();
 					System.out.println("숫자를 입력하지 않아 기본값 0으로 저장됩니다.");
 				}
 				addCar(new CarDTO(model, brand, carType, price));

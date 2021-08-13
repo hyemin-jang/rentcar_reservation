@@ -19,7 +19,7 @@ public class CustomerDTO {
 		this.phone = phone;
 		this.license = license;
 	}
-	
+
 	public CustomerDTO(int customerId, String name, String phone, String license) {
 		super();
 		this.customerId = customerId;
@@ -62,7 +62,8 @@ public class CustomerDTO {
 
 	@Override
 	public String toString() {
-		return "CustomerDTO [customerId=" + customerId + ", name=" + name + ", phone=" + phone + ", license=" + license + "]";
+		return "CustomerDTO [customerId=" + customerId + ", name=" + name + ", phone=" + phone + ", license=" + license
+				+ "]";
 	}
 
 }
