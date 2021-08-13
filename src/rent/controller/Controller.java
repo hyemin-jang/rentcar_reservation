@@ -116,34 +116,29 @@ public class Controller {
 	}
 	
 	// 관리자 - 차량 등록 로직
-	public static boolean addCar(CarDTO car) {
-		boolean result = false;
-
+	public static void addCar(CarDTO car) {
 		try {
-			result = CarDAO.addCar(car);
-			RunningEndView.showMessage("차량을 등록했습니다.");
+			int carId = CarDAO.addCar(car);			
+			RunningEndView.showMessage("차량을 등록했습니다. (차량 등록 번호 : " + carId + ")");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			RunningEndView.showError("차량 등록에 실패하였습니다.");
 		}
-		return result;
 	}
 
 	// 관리자 - 차량 삭제 로직
-	public static boolean deleteCar(int id) {
-		boolean result = false;
+	public static void deleteCar(int id) {
 		CarDTO car = null;
 
 		try {
 			car = CarDAO.getCar(id);
-			result = CarDAO.deleteCar(car);
+			CarDAO.deleteCar(car);
 			RunningEndView.showMessage("차량을 삭제했습니다.");
 		} catch (SQLException e) {
 			RunningEndView.showError("차량 삭제에 실패하였습니다.");
 		} catch (NullPointerException e) {
 			RunningEndView.showError("해당 차량이 존재하지 않습니다.");
 		}
-		return result;
 	}
 
 	// 관리자 - 모든 렌트 내역 검색 로직
@@ -164,7 +159,7 @@ public class Controller {
 
 		while (true) {
 			System.out.println("\n0.메뉴 종료하기 \t1.모든 차량 조회하기  \t2.모델명으로 검색   \t3.차종으로 검색 \t4.브랜드로 검색"
-					+ "\n\t5.대여 가능 차량 조회 \t6.차량 대여하기 \t7.차량 반납하기 \t8.예약 조회하기 \t9.고객 등록"
+					+ "\n5.대여 가능 차량 조회 \t6.차량 대여하기 \t7.차량 반납하기 \t8.예약 조회하기 \t9.고객 등록"
 					+ "\n\n[관리자 메뉴]\n10.차량 추가  \t11.차량 삭제 \t12.모든 대여 내역 조회");
 			System.out.println("\n메뉴를 선택해주세요.");
 
@@ -187,7 +182,7 @@ public class Controller {
 				getCarModelList(carModel);
 
 			} else if (choice == 3) {
-				System.out.println("검색하실 차종을 입력해주세요 [경차/준중형/중형/SUV].");
+				System.out.println("검색하실 차종을 입력해주세요 [경차/준중형/중형/대형/SUV].");
 				String carType = sc.next();
 				getCarTypeList(carType);
 
@@ -212,8 +207,14 @@ public class Controller {
 				addRentList(new RentDTO(endDay, customerId, carId));
 				
 			} else if (choice == 7) {
-				System.out.println("예약번호를 입력해주세요");
-				
+				System.out.println("예약번호를 기억하시나요? y/n");
+				String answer = sc.next();
+				if (answer.equals("n")) {				
+					System.out.println("예약내역을 조회하실 고객 이름을 입력해주세요.");
+					answer = sc.next();
+					getRentList(answer);
+				}	
+				System.out.println("예약번호를 입력해주세요.");
 				int rentId = 0;
 				try {
 					rentId = Integer.parseInt(sc.next());
