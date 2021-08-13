@@ -5,7 +5,7 @@
 
 # 1. Modeling
 
-!(https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e16062b5-a7be-42fe-92ef-648b8d33c159/Untitled.png)
+!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e16062b5-a7be-42fe-92ef-648b8d33c159/Untitled.png
 
 # 2. SQL
 
@@ -83,7 +83,7 @@ commit;
 
 # 3. Class Diagram
 
-!(https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c7bbdaac-c940-4f6a-a53c-1988b595a044/classDiagram.gif)
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c7bbdaac-c940-4f6a-a53c-1988b595a044/classDiagram.gif]
 
 # 4. Function
 
