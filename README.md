@@ -1,7 +1,7 @@
 # 🚗 플레이렌트카
+
 > 고객이 차량 조회/대여/반납을 할 수 있고, 관리자는 차량 등록/삭제/모든 대여 내역을 조회할 수 있는 렌트카 예약 시스템
 
-제약사항 : 당일 대여만 가능
 
 # 1. Modeling
 ![image](https://user-images.githubusercontent.com/74531573/129319247-d86c26e5-917b-4bc1-adf8-7958e8e2acc7.png)
