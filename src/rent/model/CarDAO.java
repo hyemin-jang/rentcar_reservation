@@ -171,6 +171,7 @@ public class CarDAO {
 			}			
 		} finally {
 			DBUtil.close(con, pstmt);
+			DBUtil.close(con, pstmt2, rset);
 		}
 		return carId;
 	}
