@@ -31,9 +31,6 @@ public class CarDAO {
 				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
 						rset.getInt(5), rset.getString(6)));
 			}
-		} catch (SQLException s) {
-			s.printStackTrace();
-			throw s;
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
@@ -58,9 +55,6 @@ public class CarDAO {
 				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
 						rset.getInt(5), rset.getString(6)));
 			}
-		} catch (SQLException s) {
-			s.printStackTrace();
-			throw s;
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
@@ -85,8 +79,6 @@ public class CarDAO {
 				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
 						rset.getInt(5), rset.getString(6)));
 			}
-		} catch (SQLException s) {
-			throw s;
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
@@ -111,8 +103,6 @@ public class CarDAO {
 				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
 						rset.getInt(5), rset.getString(6)));
 			}
-		} catch (SQLException s) {
-			throw s;
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
@@ -137,9 +127,6 @@ public class CarDAO {
 				carList.add(new CarDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
 						rset.getInt(5), rset.getString(6)));
 			}
-		} catch (SQLException s) {
-			s.printStackTrace();
-			throw s;
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
@@ -218,9 +205,6 @@ public class CarDAO {
 						rset.getInt(5), rset.getString(6));
 			}
 
-		} catch (SQLException s) {
-			s.printStackTrace();
-			throw s;
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}

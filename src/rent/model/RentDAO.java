@@ -35,9 +35,6 @@ public class RentDAO {
 				rentList.add(new RentDTO(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getInt(4),
 						rset.getInt(5), rset.getString(6)));
 			}
-		} catch (SQLException s) {
-			s.printStackTrace();
-			throw s;
 		} finally {
 			DBUtil.close(con, pstmt, rset);
 		}
@@ -45,7 +42,7 @@ public class RentDAO {
 	}
 
 	// 차량 대여
-	public static int addRentList(RentDTO rent) throws SQLException {
+	public static int addRentList(RentDTO rent) throws SQLException, ParseException {
 		Connection con = null;
 		PreparedStatement pstmtAddRent = null;
 		PreparedStatement pstmtGetPrice = null;
@@ -60,6 +57,7 @@ public class RentDAO {
 			pstmtRentStatus = con.prepareStatement(sql.getProperty("getCarIsRent"));
 			pstmtRentStatus.setInt(1, rent.getCarId());
 			rsetRentStatus = pstmtRentStatus.executeQuery();
+			
 			if (rsetRentStatus.next()) {
 				if (rsetRentStatus.getInt(1) == 0) {
 					pstmtAddRent = con.prepareStatement(sql.getProperty("addRentList"));
@@ -97,10 +95,6 @@ public class RentDAO {
 					return -1; // 이미 대여중
 				}
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
 		} finally {
 			DBUtil.close(con, pstmtAddRent, rsetPrice);
 			DBUtil.close(con, pstmtGetPrice, rsetRentId);
