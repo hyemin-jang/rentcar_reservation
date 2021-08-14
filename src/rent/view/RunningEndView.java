@@ -31,7 +31,7 @@ public class RunningEndView {
 				logger.info("조회 내역 없음");
 			}
 		} else {
-			System.out.println("null 값은 허용되지 않습니다.");
+			System.out.println("조회 리스트를 받아올 수 없습니다.");
 			logger.warn("조회 실패");
 		}
 
@@ -58,7 +58,7 @@ public class RunningEndView {
 				logger.info("예약 내역 없음");
 			}
 		} else {
-			System.out.println("null 값은 허용되지 않습니다.");
+			System.out.println("조회 리스트를 받아올 수 없습니다.");
 			logger.warn("예약 조회 실패");
 		}
 

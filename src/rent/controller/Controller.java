@@ -2,6 +2,7 @@ package rent.controller;
 
 import java.io.InputStreamReader;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 import rent.model.CarDAO;
@@ -69,14 +70,15 @@ public class Controller {
 			int status = RentDAO.addRentList(rent);
 			if (status == 1) {
 				RunningEndView.showMessage("예약에 성공했습니다.");
-			} else if (status == -1) {
-				RunningEndView.showMessage("이미 예약중인 차량입니다.");=====
 			} else {
-				RunningEndView.showMessage("고객 번호 또는 차량 번호를 다시 확인해주세요.");
-			}
+				RunningEndView.showMessage("이미 예약중인 차량입니다.");
+			} 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			RunningEndView.showError("차량 예약에 실패하였습니다.");
+		} catch (ParseException e) {
+			e.printStackTrace();
+			RunningEndView.showError("날짜를 yyyy-mm-dd 형태로 다시 입력해주세요.");
 		}
 	}
 
@@ -94,7 +96,7 @@ public class Controller {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RunningEndView.showError("에러 발생");
+			RunningEndView.showError("예기치 못한 에러입니다. 관리자에게 문의해주세요.");
 		}
 	}
 
@@ -104,12 +106,12 @@ public class Controller {
 			RunningEndView.getRentList(RentDAO.getRentList(name));
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RunningEndView.showError("에러 발생");
+			RunningEndView.showError("예기치 못한 에러입니다. 관리자에게 문의해주세요.");
 		}
 	}
 
 	// 고객 추가
-	private static void addCustomer(CustomerDTO customer) {
+	private static void addCustomer(CustomerDTO customer) throws SQLException {
 		try {
 
 			if (CustomerDAO.addCustomer(customer) == true) {
@@ -119,7 +121,7 @@ public class Controller {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RunningEndView.showError("에러발생");
+			RunningEndView.showError("예기치 못한 에러입니다. 관리자에게 문의해주세요.");
 		}
 	}
 
@@ -157,7 +159,10 @@ public class Controller {
 			RunningEndView.getRentList(RentDAO.getAllRentList());
 		} catch (SQLException e) {
 			e.printStackTrace();
-			RunningEndView.showError("에러");
+			RunningEndView.showError("리스트 조회에 실패했습니다.");
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			RunningEndView.showError("리스트 조회에 실패했습니다.");
 		}
 	}
 
@@ -211,11 +216,21 @@ public class Controller {
 				System.out.println("반납할 날짜를 입력하세요. (yyyy-mm-dd 형태로 입력)");
 				endDay = sc.next();
 				System.out.println("고객번호를 입력하세요.");
-				customerId = Integer.parseInt(sc.next());
-				System.out.println("차량번호를 입력하세요.");
-				carId = Integer.parseInt(sc.next());
-				addRentList(new RentDTO(endDay, customerId, carId));
-
+				try {
+					customerId = Integer.parseInt(sc.next());
+					System.out.println("차량번호를 입력하세요.");
+					try {
+						carId = Integer.parseInt(sc.next());
+						addRentList(new RentDTO(endDay, customerId, carId));
+					} catch (NumberFormatException e) {
+						e.printStackTrace();
+						RunningEndView.showError("차량 번호를 다시 확인해주세요.");
+					}
+					
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					RunningEndView.showError("고객 번호를 다시 확인해주세요.");
+				}
 			} else if (choice == 7) {
 				System.out.println("예약번호를 기억하시나요? y/n");
 				String answer = sc.next();
@@ -245,7 +260,13 @@ public class Controller {
 				String phone = sc.next();
 				System.out.println("면허증 번호를 입력하세요.");
 				String license = sc.next();
-				addCustomer(new CustomerDTO(name, phone, license));
+				try {
+					addCustomer(new CustomerDTO(name, phone, license));
+				} catch (SQLException e){
+					e.printStackTrace();
+					RunningEndView.showError("정확한 번호가 맞는지 확인해주세요.");
+				}
+				
 
 			} else if (choice == 10) {
 				System.out.println("차량 모델을 입력하세요.");
@@ -261,7 +282,7 @@ public class Controller {
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 					System.out.println("숫자를 입력하지 않아 기본값 0으로 저장됩니다.");
-				}
+				} 
 				addCar(new CarDTO(model, brand, carType, price));
 
 			} else if (choice == 11) {
@@ -280,6 +301,7 @@ public class Controller {
 
 		}
 		sc.close();
+		sc = null;
 	}
 
 }
